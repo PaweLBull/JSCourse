@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Java Script - (FLS)</title>
+</head>
+
+<body>
+	<div class="rootpage">
+		<h1>Курс Java Script</h1>
+		<h2>HomeWorks
+		</h2>
+		<ol class="rootpage__list">
+			<li><a target="_blank" href="units/unit_2/homework.html">Unit 2</a>
+				<a target="_blank" href="units/unit_2/additional.html">Unit 2 (extra)</a>
+			</li>
+			<li><a target="_blank" href="units/unit_3/homework.html">Unit 3-4</a>
+				<a target="_blank" href="units/unit_3/additional.html">Unit 3-4</a>
+			</li>
+			<li><a target="_blank" href="units/unit_5/homework.html">Unit 5</a>
+				<a target="_blank" href="units/unit_5/additional.html">Unit 5 (extra)</a>
+			</li>
+			<li><a target="_blank" href="units/unit_6/homework.html">Unit 6</a>
+			</li>
+			<li><a target="_blank" href="units/unit_7/homework.html">Unit 7</a>
+			</li>
+			<li><a target="_blank" href="units/unit_8/homework.html">Unit 8</a>
+			</li>
+			<li><a target="_blank" href="units/unit_9/homework.html">Unit 9</a>
+			</li>
+		</ol>
+	</div>
+</body>
+<style>
+	@charset "UTF-8";
+
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		color: #fff;
+		background: linear-gradient(0deg, rgba(255, 250, 0, 1) 0%, rgba(34, 52, 195, 1) 100%);
+	}
+
+	body {
+		font-family: Montserrat, serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.8rem;
+		text-decoration: none;
+		display: inline-block;
+		position: relative;
+	}
+
+	ul li,
+	ol li {
+		list-style: none;
+	}
+
+	img {
+		vertical-align: top;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.rootpage {
+		padding: 3rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	@media (max-width: 767px) {
+		.rootpage {
+			padding: 30px 15px;
+		}
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		margin: 2rem auto 1.25rem;
+		text-align: center;
+	}
+
+	@media (max-width: 767px) {
+		h1 {
+			font-size: 1.85rem;
+			margin: 0px 0px 1.25rem 0px;
+		}
+	}
+
+	h2 {
+		color: rgb(45, 255, 76);
+		font-size: 2.2rem;
+		margin: 0px 0px 1rem 0px;
+	}
+
+	@media (max-width: 767px) {
+		h2 {
+			font-size: 1.125rem;
+			margin: 0px 0px 1rem 0px;
+		}
+	}
+
+	.rootpage__list {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.rootpage__list li:not(:last-child) {
+		margin: 0px 0px 10px 0px;
+	}
+
+	.rootpage__list li:nth-child(even) {
+		margin-bottom: 20px;
+	}
+
+	.rootpage__list li {
+		text-shadow: 0.1rem 0.1rem black;
+		position: relative;
+		line-height: 1.5;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		align-items: flex-start;
+	}
+
+	.rootpage__list li a:nth-child(even) {
+		transform: translateX(2rem);
+		line-height: 1.2;
+	}
+
+	.rootpage__list li a:nth-child(even) {
+		font-size: 1.4rem;
+		color: #d2bd05;
+	}
+
+	.rootpage__list li a::before {
+		content: '';
+		position: absolute;
+		display: block;
+		top: 100%;
+		left: 50%;
+		width: 0;
+		height: 5px;
+		border-radius: 20px;
+		background-color: blue;
+		transition: all 0.3s;
+	}
+
+	.rootpage__list li a:nth-child(even)::before {
+		height: 3px;
+		background-color: rgb(202, 58, 26);
+	}
+
+	.rootpage__list li a:hover::before {
+		left: 0;
+		width: 100%;
+	}
+</style>
+
+</html>

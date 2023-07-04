@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework 5 - Task 12</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 12</h4>
+			<p>Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як
+				одне з чотирьох зображень. Вивести ці зображення і повідомити виграш користувача (три перших
+				зображення 100 грн, три других – 200, три третіх – 500, три четвертих зображення – 1000грн).
+				Використати цикли і switch (для вибору зображення за номером).</p>
+			<img src="task12.png" alt="task12">
+		</div>
+		<script>
+			const PUMKIN = '<img class="pic" src="pumpkin.png" alt="100" >';
+			const CUCUMBER = '<img class="pic" src="cucumber.png" alt="200" >';
+			const STRAWBERRY = '<img class="pic" src="strawberry.png" alt="500" >';
+			const STAR = '<img class="pic" src="star.png" alt="1000" >';
+			const numMin = 1;
+			const numMax = 4;
+			let randomNum;
+			let sumRandomNum = 0;
+			let price;
+			let out = '';
+			let winner = '';
+			let count1 = 0;
+			let count2 = 0;
+			let count3 = 0;
+			let count4 = 0;
+			for (let barNum = 0; barNum < 3; barNum++) {
+				randomNum = Math.floor(Math.random() * (numMax - numMin + 1) + numMin);
+				switch (randomNum) {
+					case 1:
+						out += PUMKIN;
+						count1++
+						break;
+					case 2:
+						out += CUCUMBER;
+						count2++
+						break;
+					case 3:
+						out += STRAWBERRY;
+						count3++
+						break;
+					case 4:
+						out += STAR;
+						count4++;
+						break;
+				}
+			}
+			if (count1 === 3) winner = 'Ви виграли 100 грн';
+			if (count2 === 3) winner = 'Ви виграли 200 грн';
+			if (count3 === 3) winner = 'Ви виграли 500 грн';
+			if (count4 === 3) winner = 'Ви виграли 1000 грн';
+			document.write(out);
+			document.write(winner);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	.pic {
+		margin-right: 40px;
+	}
+</style>
+
+</html>

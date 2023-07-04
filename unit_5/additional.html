@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 5 - additional</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework №5 (additional exercises)</h1>
+			<div class="homework__task">
+				<a href="hw/task_m2.html">
+					<h4>Задача -2</h4>
+					<p>Поступово генерувати 100 випадкових чисел від 1 до 1000. Підрахувати яких чисел більше: парних чи
+						непарних.</p>
+				</a>
+				<a href="hw/task_m1.html">
+					<h4>Задача -1</h4>
+					<p>Вивести на екран номери місяців весни і літа (від 3 до 8).</p>
+				</a>
+				<a href="hw/task_0.html">
+					<h4>Задача 0</h4>
+					<p>Вивести на екран 8 кнопок з написом “Hello”.</p>
+				</a>
+				<a href="hw/task_1.html">
+					<h4>Задача 1</h4>
+					<p>Вивести з використанням циклів маркований список з випадковими числами (1-100). Кількість випадкових
+						чисел вводиться користувачем. Приклад:</p>
+					<img src="hw/task1.png" alt="task1">
+				</a>
+				<a href="hw/task_3.html">
+					<h4>Задача 3</h4>
+					<p>Вивести таблицю з одним рядком і 7 стовпцями.</p>
+					<img src="hw/task3.png" alt="task3">
+				</a>
+				<a href="hw/task_4.html">
+					<h4>Задача 4</h4>
+					<p>. Вивести таблицю з 3 рядків і 7 стовпців.</p>
+					<img src="hw/task4.png" alt="task4">
+				</a>
+				<a href="hw/task_5.html">
+					<h4>Задача 5</h4>
+					<p>Вивести таблицю.</p>
+					<img src="hw/task5.png" alt="task5">
+				</a>
+				<a href="hw/task_7.html">
+					<h4>Задача 7</h4>
+					<p>Вивести на екран N абзаців (N вводиться користувачем) за зразком:</p>
+					<img src="hw/task7.png" alt="task7">
+				</a>
+				<a href="hw/task_8.html">
+					<h4>Задача 8</h4>
+					<p>Користувач загадує число. За 3 спроби комп’ютер намагається вгадати число користувача (використати
+						confirm).</p>
+				</a>
+				<a href="hw/task_10.html">
+					<h4>Задача 10</h4>
+					<p>Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами. </p>
+				</a>
+				<a href="hw/task_11.html">
+					<h4>Задача 11</h4>
+					<p>Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем числами. </p>
+				</a>
+				<a href="hw/task_13.html">
+					<h4>Задача 13</h4>
+					<p>Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів
+						користувач намагається потопити корабель. </p>
+				</a>
+				<a href="hw/task_15.html">
+					<h4>Задача 15</h4>
+					<p> Користувача поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+				</a>
+				<a href="hw/task_16.html">
+					<h4>Задача 16</h4>
+					<p> Користувач поступово вводить прибуток магазину за кожен день протягом N тижнів. Знайти загальну
+						величину прибутку та вивести величину прибутку протягом кожного окремого тижня.</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>

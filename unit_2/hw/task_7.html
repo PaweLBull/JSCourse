@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Homework 2 - Task 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>
+				Задача 7
+			</h4>
+			<p>Знайти суму випадкового номера місяця (від 1 до 12) та випадкового номера дня (від 0 до 6).</p>
+		</div>
+		<script>
+			const MIN_MONTH = 1;
+			const MAX_MONTH = 12;
+			const MIN_NUM = 0;
+			const MAX_NUM = 6;
+
+			let randomMonth = Math.floor(Math.random() * (MAX_MONTH - MIN_MONTH + 1) + MIN_MONTH);
+			let randomNumber = Math.floor(Math.random() * (MAX_NUM - MIN_NUM + 1) + MIN_NUM);
+
+			let sumRandom = randomMonth + randomNumber;
+
+			document.write(`Випадковий місяць: ${randomMonth} <br>Випадкове число: ${randomNumber} <br><br>`);
+			document.write(`<h5>Сума: ${sumRandom}</h5>`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	h5 {
+		color: rgb(196, 67, 248);
+		text-decoration: underline;
+	}
+</style>
+
+</html>
