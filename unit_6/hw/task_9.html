@@ -4,29 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<title>Homework 5 - Task 15</title>
+	<title>Homework 6 - Task 9</title>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="task">
-			<h4>Задача 15</h4>
-			<p> Користувача поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+			<h4>Задача 9</h4>
+			<p>З клавіатури вводиться пароль (правильний пароль- 78). Поки пароль не вірний дати можливість користувачу
+				повторно ввести його. </p>
 		</div>
 		<script>
-			let counter = 0;
-			let tempSum = 0;
-			let userTemp;
+			let userPas;
+			const PASSWORD = 78;
 			do {
-				userTemp = parseFloat(prompt(`Введіть темепратуру за ${counter} день`));
-				if (isNaN(userTemp)) break;
-				counter++;
-				tempSum += userTemp;
-				alert(`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`);
-			} while (userTemp);
-			document.write((`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`))
-
+				userPas = prompt("Пароль: ");
+				if (userPas == PASSWORD) document.write("Вітаємо, Ви в системі!");
+			} while (userPas != PASSWORD);
 		</script>
 	</div>
 </body>
@@ -86,6 +80,22 @@
 
 	p {
 		color: yellow;
+	}
+
+	table {
+		border: 3px solid yellow;
+	}
+
+	td {
+		border: 1px solid rgb(83, 83, 233);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(83, 83, 233);
+		color: rgb(222, 108, 108);
 	}
 </style>
 

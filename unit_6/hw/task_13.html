@@ -4,29 +4,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<title>Homework 5 - Task 15</title>
+	<title>Homework 6 - Task 13</title>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="task">
-			<h4>Задача 15</h4>
-			<p> Користувача поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+			<h4>Задача 13</h4>
+			<p>З клавіатури вводяться поступово числа. Знайти два найменші числа. Ввід здійснюється до тих пір, поки
+				різниця між такими числами є більшою за 5.</p>
 		</div>
 		<script>
-			let counter = 0;
-			let tempSum = 0;
-			let userTemp;
+			let minNum1 = Infinity, minNum2;
 			do {
-				userTemp = parseFloat(prompt(`Введіть темепратуру за ${counter} день`));
-				if (isNaN(userTemp)) break;
-				counter++;
-				tempSum += userTemp;
-				alert(`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`);
-			} while (userTemp);
-			document.write((`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`))
-
+				let userNumber = parseInt(prompt(`Введіть число`));
+				if (userNumber < minNum1) {
+					minNum2 = minNum1;
+					minNum1 = userNumber;
+				} else if (userNumber > minNum1 && userNumber < minNum2) {
+					minNum2 = userNumber;
+				}
+			} while (minNum2 - minNum1 > 5);
+			document.write(`Різниця двох мінімальних чисел ${minNum2} - ${minNum1} = ${minNum2 - minNum1}`);
 		</script>
 	</div>
 </body>

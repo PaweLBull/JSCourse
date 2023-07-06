@@ -18,19 +18,14 @@
 		<script>
 			const numMin = 1;
 			const numMax = 20;
-			let out = '';
 			let askNumber = 0;
+			let checkNumber;
 			do {
 				let randomNum = Math.floor(Math.random() * (numMax - numMin + 1) + numMin);
-				let checkNumber = confirm(randomNum);
+				checkNumber = confirm(randomNum);
 				askNumber++;
-				if (checkNumber) {
-					out = `Комп'ютер вгадав Ваше число з ${askNumber} разу`;
-					break;
-				}
-				else out = "Комп'ютер невгадав Ваше число";
-			} while (askNumber > 0);
-			document.write(out);
+			} while (!checkNumber);
+			document.write(`Комп'ютер вгадав Ваше число з ${askNumber} разу`);
 		</script>
 	</div>
 </body>

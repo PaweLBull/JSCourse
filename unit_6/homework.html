@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 6</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework №6</h1>
+			<div class="homework__task">
+				<a href="hw/task_3.html">
+					<h4>Задача 3</h4>
+					<p>З клавіатури вводиться початкове значення суми. Поки сума є меншою за 100 додавати до неї числа, які
+						вводяться з клавіатури.</p>
+				</a>
+				<a href="hw/task_6.html">
+					<h4>Задача 6</h4>
+					<p>На екрані виводиться меню:<br>
+						1.Ініціалізація (сума=0)<br>
+						2.Додати 2<br>
+						3.Додати 3<br>
+						4.Відняти 2<br>
+						5.Відняти 3.<br>
+						6.Вивести суму<br>
+						7.Вихід.<br>
+						Шляхом поступового вибору відповідних пунктів спробувати отримати число N, яке вводиться з клавіатури.
+					</p>
+				</a>
+				<a href="hw/task_9.html">
+					<h4>Задача 9</h4>
+					<p>З клавіатури вводиться пароль (правильний пароль- 78). Поки пароль не вірний дати можливість
+						користувачу повторно ввести його. </p>
+				</a>
+				<a href="hw/task_11.html">
+					<h4>Задача 11</h4>
+					<p>Комп’ютер загадує випадкове число від 1 до 10. Вгадати число шляхом введеня можливих варіантів. В
+						кінці вивести кількість спроб користувача. <br>
+						11.1. Комп’ютер загадує два випадкових числа від 1 до 10. Вгадати обидва числа шляхом введеня можливих
+						варіантів. В кінці вивести кількість спроб користувача.</p>
+				</a>
+				<a href="hw/task_12.html">
+					<h4>Задача 12</h4>
+					<p>З клавіатури вводяться поступово числа. Знайти два найбільші числа. Ввід здійснюється до тих пір, поки
+						різниця між такими числами є більшою за 5.</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 20px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>

@@ -4,29 +4,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<title>Homework 5 - Task 15</title>
+	<title>Homework 6 - Task 3</title>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="task">
-			<h4>Задача 15</h4>
-			<p> Користувача поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+			<h4>Задача 3</h4>
+			<p>З клавіатури вводиться початкове значення суми. Поки сума є меншою за 100 додавати до неї числа, які
+				вводяться з клавіатури.</p>
 		</div>
 		<script>
-			let counter = 0;
-			let tempSum = 0;
-			let userTemp;
-			do {
-				userTemp = parseFloat(prompt(`Введіть темепратуру за ${counter} день`));
-				if (isNaN(userTemp)) break;
-				counter++;
-				tempSum += userTemp;
-				alert(`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`);
-			} while (userTemp);
-			document.write((`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`))
-
+			let userSum = parseFloat(prompt("Введіть початкове значення суми"));
+			const maxSum = 100;
+			for (userSum; userSum < maxSum;) {
+				let userNum = parseFloat(prompt("Введіть число"));
+				userSum += userNum;
+				alert(`Баланс ${userSum}. Залишилось ${maxSum - userSum}`);
+			}
+			document.write(`Вітаємо! Ви зібрали всю суму!!! Залишок ${userSum - maxSum}`);
 		</script>
 	</div>
 </body>

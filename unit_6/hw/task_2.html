@@ -4,29 +4,37 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<title>Homework 5 - Task 15</title>
+	<title>Homework 6 - Task 2</title>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="task">
-			<h4>Задача 15</h4>
-			<p> Користувача поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+			<h4>Задача 2</h4>
+			<p>З клавіатури вводитяться числа поки не буде введено 0. Знайти добуток чисел. <br>
+				2.1. З клавіатури поступово вводяться символи поки не буде введено символ «а». Вивести рядок символів у
+				зворотному порядку. </p>
 		</div>
 		<script>
-			let counter = 0;
-			let tempSum = 0;
-			let userTemp;
-			do {
-				userTemp = parseFloat(prompt(`Введіть темепратуру за ${counter} день`));
-				if (isNaN(userTemp)) break;
-				counter++;
-				tempSum += userTemp;
-				alert(`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`);
-			} while (userTemp);
-			document.write((`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`))
+			// let userNum = 1;
+			// let product = 1;
+			// do {
+			// 	product *= userNum;
+			// 	let userNum = parseInt(prompt("Введіть число"));
+			// } while (userNum !== 0);
+			// document.write(`Добуток чисел: ${product}`);
 
+			let userSymb = '';
+			let str = '';
+			let out = '';
+			do {
+				str += userSymb;
+				userSymb = prompt("Введіть символ");
+			} while (userSymb !== "a");
+			for (let symb = str.length - 1; symb >= 0; symb--) {
+				out += str[symb];
+			}
+			document.write(`Набір симолів: ${out}`);
 		</script>
 	</div>
 </body>

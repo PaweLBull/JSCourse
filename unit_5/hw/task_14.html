@@ -19,17 +19,12 @@
 		<script>
 			const valueToPay = parseFloat(prompt('Загальна вартість кредиту, грн'));
 			let userPaySum = 0;
-			let tryToPay = 0;
 			do {
 				let userPay = parseFloat(prompt('Частина погашення кредиту, грн'));
 				userPaySum += userPay;
-				if (valueToPay > userPaySum) alert(`Ви сплатили: ${userPay} грн. Залишилось до сплати: ${valueToPay - userPaySum} грн`);
-				else {
-					alert(`Вітаємо!!! Ви сплатили кредит у кількості: ${valueToPay} грн`);
-					break;
-				}
-				tryToPay++;
-			} while (tryToPay > 0);
+				alert(`Ви сплатили: ${userPay} грн. Залишилось до сплати: ${valueToPay - userPaySum} грн`);
+			} while (valueToPay > userPaySum);
+			document.write(`Вітаємо!!! Ви сплатили кредит у кількості: ${valueToPay} грн`)
 		</script>
 	</div>
 </body>

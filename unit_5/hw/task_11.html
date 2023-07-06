@@ -15,19 +15,15 @@
 			<p>Знайти суму 5 непарних чисел, що знаходяться між заданими користувачем числами. </p>
 		</div>
 		<script>
-			let numOdd = 0;
-			let userNum = 0;
-			let countOddNumbers = 0;
-			do {
+			let sumOddNumbers = 0;
+			for (let numOdd = 0; numOdd < 5;) {
 				let checkNumber = parseInt(prompt('Введіть будь-яке ціле число'));
 				if (checkNumber % 2 !== 0) {
-					numOdd += checkNumber;
-					countOddNumbers++;
-					if (countOddNumbers === 5) break;
+					sumOddNumbers += checkNumber;
+					numOdd++;
 				}
-				userNum++;
-			} while (userNum > 0);
-			document.write(`Сума ${countOddNumbers} непарних чисел: ${numOdd}`);
+			}
+			document.write(`Сума 5 непарних чисел: ${sumOddNumbers}`);
 		</script>
 	</div>
 </body>

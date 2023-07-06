@@ -4,29 +4,23 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-	<title>Homework 5 - Task 15</title>
+	<title>Homework 6 - Task 1</title>
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="task">
-			<h4>Задача 15</h4>
-			<p> Користувача поступово вводить показники температури протягом року. Знайти середню температуру.</p>
+			<h4>Задача 1</h4>
+			<p>З клавіатури вводитяться числа поки не буде введено 0. Знайти суму чисел.</p>
 		</div>
 		<script>
-			let counter = 0;
-			let tempSum = 0;
-			let userTemp;
+			let userNum;
+			let sum = 0;
 			do {
-				userTemp = parseFloat(prompt(`Введіть темепратуру за ${counter} день`));
-				if (isNaN(userTemp)) break;
-				counter++;
-				tempSum += userTemp;
-				alert(`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`);
-			} while (userTemp);
-			document.write((`Cередня температура за ${counter} дні: ${(tempSum / counter).toFixed(1)}`))
-
+				userNum = parseInt(prompt("Введіть число"));
+				sum += userNum;
+			} while (userNum !== 0);
+			document.write(`Сума чисел: ${sum}`);
 		</script>
 	</div>
 </body>

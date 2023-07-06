@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 6 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>З клавіатури поступово вводяться числа. Знайти суму перших N парних чисел. <br>
+				4.1. З клавіатури вводяться два числа N i M "(N < M)". Вивести на екран числа <br>
+					N---M<br>
+					N+1 --- M-1<br>
+					N+2 --- M-2<br>
+					N+3 --- M-3<br>
+					. . . . . . <br>
+					Виведення завершити коли число справа стане меншим за число зліва.</p>
+		</div>
+		<script>
+			// let userNum;
+			// let sum = 0;
+			// for (let i = 0; i < 2;) {
+			// 	userNum = parseInt(prompt('Введіть число'));
+			// 	if (userNum % 2 === 0) {
+			// 		sum += userNum;
+			// 		i++;
+			// 	}
+			// }
+			// document.write(`Сума перших двох парних чисел: ${sum}`);
+
+			let userFirstNumber = parseInt(prompt('Введіть перше число'));
+			let userSecondNumber = parseInt(prompt('Введіть друге число'));
+			let out = '';
+			while (userFirstNumber < userSecondNumber) {
+				out += `${userFirstNumber++} --- ${userSecondNumber--} <br>`;
+			}
+			document.write(out);
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>
