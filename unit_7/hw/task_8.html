@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7 - Task 8</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 8</h4>
+			<p>>Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди
+				переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: comment
+				<!-- <a><img src=”#”></a> -->
+				))
+			</p>
+		</div>
+		<script>
+			function getBanner(forwardAddress, title, imgSrc) {
+				return `<a href="${forwardAddress}" target="_blank" style="display:inline-block; position:relative" "><img src="${imgSrc}" width="700px"">
+				<h6 style="position:absolute; top:55%; left:50%; transform: translate(-50%, 0); color:#fff; font-size: 30px">${title}</h6>
+			</a>`;
+			}
+			let banner = getBanner("https://pawelbull.github.io/Lessons/lesson_13/", "Слава Україні !!!", "https://hecht.ua/content/uploads/images/slava_ukraini.jpg");
+			document.write(banner);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

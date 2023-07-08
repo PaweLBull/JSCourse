@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7 - Task 3</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 3</h4>
+			<p>Створити окремі функції, які для 4 чисел знаходять: <br>
+				1. суму;<br>
+				2. добуток;<br>
+				3. середнє арифметичне;<br>
+				4. мінімальне значення.</p>
+		</div>
+		<script>
+			const num1 = parseFloat(prompt('Введіть перше число'));
+			const num2 = parseFloat(prompt('Введіть друге число'));
+			const num3 = parseFloat(prompt('Введіть третє число'));
+			const num4 = parseFloat(prompt('Введіть четверте число'));
+
+			function getSum(num1, num2, num3, num4) {
+				return num1 + num2 + num3 + num4;
+			}
+			function getProduct(num1, num2, num3, num4) {
+				return num1 * num2 * num3 * num4;
+			}
+			function getAverage(num1, num2, num3, num4) {
+				return (num1 + num2 + num3 + num4) / 4;
+			}
+			function getMin(num1, num2, num3, num4) {
+				let minNumber = num1;
+				if (minNumber > num2) minNumber = num2;
+				if (minNumber > num3) minNumber = num3;
+				if (minNumber > num4) minNumber = num4;
+				return minNumber;
+			}
+			let resultSum = getSum(num1, num2, num3, num4);
+			let resultProduct = getProduct(num1, num2, num3, num4);
+			let resultAverage = getAverage(num1, num2, num3, num4);
+			let resultMinNumber = getMin(num1, num2, num3, num4);
+			document.write(`Числа ${num1}, ${num2}, ${num3}, ${num4} <br><br> СУМА: ${resultSum} <br> ДОБУТОК: ${resultProduct} <br> СЕРЕДНЄ АРИФМЕТИЧНЕ: ${resultAverage} <br>МІНІМАЛЬНЕ ЧИСЛО: ${resultMinNumber}`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

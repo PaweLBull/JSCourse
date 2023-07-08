@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних,
+				кількість додатних, кількість більших за 100.</p>
+		</div>
+		<script>
+			let userNum;
+			let userNumbers = [];
+			function getResults() {
+				for (let i = 1; i <= 3; i++) {
+					userNum = parseFloat(prompt(`Введіть ${i} число`));
+					userNumbers.push(userNum);
+				}
+				let result = [];
+				let counterEven = 0;
+				let counterPlus = 0;
+				let counterMoreThan100 = 0;
+				for (let i = 0; i < userNumbers.length; i++) {
+					if (userNumbers[i] % 2 === 0) counterEven++;
+					if (userNumbers[i] > 0) counterPlus++;
+					if (userNumbers[i] > 100) counterMoreThan100++;
+				}
+				result.push(counterEven);
+				result.push(counterPlus);
+				result.push(counterMoreThan100);
+				return result;
+			}
+			let results = getResults();
+			document.write(`Числа ${userNumbers[0]}, ${userNumbers[1]}, ${userNumbers[2]} <br><br> К-сть парних: ${results[0]} <br> К-сть додатних: ${results[1]} <br> К-ість більших за 100: ${results[2]}`);
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

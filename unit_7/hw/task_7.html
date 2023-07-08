@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7 - Task 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 7</h4>
+			<p>Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень
+				передаються у функцію).</p>
+		</div>
+		<script>
+			function getRandomPicture(pic1Src, pic2Src, pic3Src, pic4Src) {
+				let randomPicture = 1 + Math.floor(Math.random() * 4);
+				let result;
+				switch (randomPicture) {
+					case 1:
+						result = pic1Src;
+						break;
+					case 2:
+						result = pic2Src;
+						break;
+					case 3:
+						result = pic3Src;
+						break;
+					case 4:
+						result = pic4Src;
+						break;
+				}
+				return result;
+			}
+			let showPiture = getRandomPicture("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVX2C1xVnCAafiRpKbqHXSzXj2gzzjxZ1eNw&usqp=CAU",
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJpPIhLxuzsG3oW1CczpbtpGwDNfocvXnkng&usqp=CAU",
+				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDYcOEms0YoXojq5sqAj2WH08QTWYB1kMClw&usqp=CAU',
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTw8dzKWuu1zwOnX6qMLj7HTLU6qz_5JAROg&usqp=CAU")
+			document.write(`<img src="${showPiture}"/>`);
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

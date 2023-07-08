@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7 - Task 6</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 6</h4>
+			<p>Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим
+				фіксованим повідомленням).</p>
+		</div>
+		<script>
+			let numRows = parseInt(prompt('Введіть к-сть рядків'));
+			let numColumns = parseInt(prompt('Введіть к-сть колонок'));
+			function getTable(numRows, numColumns) {
+				let result = '';
+				result += "<table>"
+				for (let i = 0; i < numRows; i++) {
+					result += "<tr>";
+					for (let j = 0; j < numColumns; j++) {
+						result += "<td>Hola</td>";
+					}
+					result += "</td>";
+				}
+				result += "</table>";
+				return result;
+			}
+			document.write(getTable(numRows, numColumns));
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid yellow;
+		margin-right: 40px;
+	}
+
+	td {
+		border: 1px solid rgb(83, 83, 233);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(83, 83, 233);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework №7</h1>
+			<div class="homework__task">
+				<a target="_blank" href="hw/task_0.html">
+					<h4>Задача 0</h4>
+					<p> Створити функцію, яка за номером місяця повертає пору року, до якої відноситься цей місяць.</p>
+				</a>
+				<a target="_blank" href="hw/task_1.html">
+					<h4>Задача 1</h4>
+					<p>Створити функцію, яка за номером місяця повертає його назву. </p>
+				</a>
+				<a target="_blank" href="hw/task_2.html">
+					<h4>Задача 2</h4>
+					<p>Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим.</p>
+				</a>
+				<a target="_blank" href="hw/task_3.html">
+					<h4>Задача 3</h4>
+					<p>Створити окремі функції, які для 4 чисел знаходять: <br>
+						1.суму;<br>
+						2.добуток;<br>
+						3.середнє арифметичне;<br>
+						4.мінімальне значення.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_4.html">
+					<h4>Задача 4</h4>
+					<p>Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних,
+						кількість додатних, кількість більших за 100.</p>
+				</a>
+				<a target="_blank" href="hw/task_5.html">
+					<h4>Задача 5</h4>
+					<p>Створити окремі функції, які переводять:<br>
+						1. Сантиметри у дюйми;<br>
+						2. Кілограми у фунти;<br>
+						3. Кілометри у милі.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_6.html">
+					<h4>Задача 6</h4>
+					<p>Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється
+						заданим фіксованим повідомленням).
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_7.html">
+					<h4>Задача 7</h4>
+					<p> Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень
+						передаються у функцію).
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_8.html">
+					<h4>Задача 8</h4>
+					<p>Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди
+						переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: comment
+						<!-- <a><img src=”#”></a> -->
+						))
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_9.html">
+					<h4>Задача 9</h4>
+					<p>Дано покази температур (довільна кількість). Розробити функцію, яка дозволить підрахувати кількість
+						від’ємних показів температури.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_10.html">
+					<h4>Задача 10</h4>
+					<p>Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення
+						для додатних показів температури.
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 20px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>
