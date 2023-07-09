@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 8 - Task 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 7</h4>
+			<p>Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за: <br>
+				1. за весь рік;<br>
+				2. у першій половині року;<br>
+				3. у другій половині року;<br>
+				4. за літо;<br>
+				5. за ІІ квартал;<br>
+				6. за парні місяці (з парними номерами);<br>
+				7. за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+			</p>
+		</div>
+		<script>
+			const monthInvoicesValues = [1350, 1470, 2350, 2211, 3460, 4570, 2340, 3320, 3450, 2200, 3500, 2700];
+			function getAllYearValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = 0; i < monthInvoicesValues.length; i++)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			function getFirstHalfYearValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = 0; i < monthInvoicesValues.length / 2; i++)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			function getSecondHalfYearValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = monthInvoicesValues.length / 2; i < monthInvoicesValues.length; i++)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			function getSummerValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = monthInvoicesValues.length - 7; i < monthInvoicesValues.length - 4; i++)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			function getSecondQuoterValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = monthInvoicesValues.length - 10; i < monthInvoicesValues.length - 7; i++)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			function getEvenMonthsValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = 1; i < monthInvoicesValues.length; i += 2)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			function getFirstSeasonMonthsValue(monthInvoicesValues) {
+				let result = 0;
+				for (let i = monthInvoicesValues.length - 10; i < monthInvoicesValues.length; i += 3)
+					result += monthInvoicesValues[i];
+				return result;
+			}
+			let allYearValue = getAllYearValue(monthInvoicesValues);
+			let firstHalfYearValue = getFirstHalfYearValue(monthInvoicesValues);
+			let secondHalfYearValue = getSecondHalfYearValue(monthInvoicesValues);
+			let summerValue = getSummerValue(monthInvoicesValues);
+			let secondQuoterValue = getSecondQuoterValue(monthInvoicesValues);
+			let evenMonthsValue = getEvenMonthsValue(monthInvoicesValues);
+			let firstSeasonMonthsValue = getFirstSeasonMonthsValue(monthInvoicesValues);
+
+			document.write(`Сумарна кількість грошей за: <br>
+				1. за весь рік: ${allYearValue}<br>
+				2. у першій половині року: ${firstHalfYearValue}<br>
+				3. у другій половині року: ${secondHalfYearValue}<br>
+				4. за літо: ${summerValue}<br>
+				5. за ІІ квартал: ${secondQuoterValue}<br>
+				6. за парні місяці (з парними номерами): ${evenMonthsValue}<br>
+				7. за місяці, які є початковими у сезоні (весна, літо, осінь, зима): ${firstSeasonMonthsValue}`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

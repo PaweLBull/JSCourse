@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 8 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які : <br>
+				• починаються на букву «А»; <br>
+				• перша і остання літери співпадають; <br>
+				• складаються з більше ніш 5 символів;</p>
+		</div>
+		<script>
+			let carNumbers = ["CH212DHC", "AD21E", "PO93WEA", "WW21W", "AW8903A", "U85FU", "CB21W"];
+			function getFirstAcarNumber(carNumbers) {
+				let result = 0;
+				for (let i = 0; i < carNumbers.length; i++) {
+					if (carNumbers[i][0] === "A") result++;
+				}
+				return result;
+			}
+			function getSimilarFirstLastLetters(carNumbers) {
+				let result = 0;
+				for (let i = 0; i < carNumbers.length; i++) {
+					if (carNumbers[i][0] === carNumbers[i][carNumbers[i].length - 1]) result++;
+				}
+				return result;
+			}
+			function getNumberMoreThan5Letters(carNumbers) {
+				let result = 0;
+				for (let i = 0; i < carNumbers.length; i++) {
+					if (carNumbers[i].length > 5) result++;
+				}
+				return result;
+			}
+			let firstAcarNumber = getFirstAcarNumber(carNumbers);
+			let similarFirstLastLetters = getSimilarFirstLastLetters(carNumbers);
+			let numberMoreThan5Letters = getNumberMoreThan5Letters(carNumbers);
+			document.write(`Кількість номерів, які починаються на букву «А»: ${firstAcarNumber} <br><br>
+			Кількість номерів, в яких перша і остання літери співпадають: ${similarFirstLastLetters} <br><br>
+			Кількість номерів, які складаються з більше ніш 5 символів: ${numberMoreThan5Letters}`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

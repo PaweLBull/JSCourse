@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 8 - Task 2</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 2</h4>
+			<p>Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран: <br>
+				• номери днів, протягом яких кількість відвідувачів була меншою за 20; <br>
+				• номери днів, коли кількість відвідувачів була мінімальною; <br>
+				• номери днів, коли кількість відвідувачів була максимальною; <br>
+				• загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.</p>
+		</div>
+		<script>
+			let valueShopVisitors = [23, 15, 7, 7, 67, 75, 19];
+			function getValueLess20(valueShopVisitors) {
+				let result = [];
+				for (let i = 0; i < valueShopVisitors.length; i++) {
+					if (valueShopVisitors[i] < 20) result.push(i + 1);
+				}
+				return result;
+			}
+			function getMinPeopleDays(valueShopVisitors) {
+				let minPeople = valueShopVisitors[0];
+				let result = [];
+				for (let i = 0; i < valueShopVisitors.length; i++) {
+					if (valueShopVisitors[i] < minPeople) minPeople = valueShopVisitors[i];
+				}
+				for (let i = 0; i < valueShopVisitors.length; i++) {
+					if (valueShopVisitors[i] === minPeople) result.push(i + 1);
+				}
+				return result;
+			}
+			function getMaxPeopleDays(valueShopVisitors) {
+				let maxPeople = valueShopVisitors[0];
+				let result = [];
+				for (let i = 0; i < valueShopVisitors.length; i++) {
+					if (valueShopVisitors[i] > maxPeople) maxPeople = valueShopVisitors[i];
+				}
+				for (let i = 0; i < valueShopVisitors.length; i++) {
+					if (valueShopVisitors[i] === maxPeople) result.push(i + 1);
+				}
+				return result;
+			}
+			function getPeopleWorkingDays(valueShopVisitors) {
+				let result = 0;
+				for (let i = 0; i < valueShopVisitors.length - 2; i++) {
+					result += valueShopVisitors[i];
+				}
+				return result;
+			}
+			function getPeopleWeekend(valueShopVisitors) {
+				let result = 0;
+				for (let i = (valueShopVisitors.length - 2); i < valueShopVisitors.length; i++) {
+					result += valueShopVisitors[i];
+				}
+				return result;
+			}
+			let visitorsLess20 = getValueLess20(valueShopVisitors);
+			let minPeopleDays = getMinPeopleDays(valueShopVisitors);
+			let maxPeopleDays = getMaxPeopleDays(valueShopVisitors);
+			let visitorsWorkingDays = getPeopleWorkingDays(valueShopVisitors);
+			let visitorsWeekends = getPeopleWeekend(valueShopVisitors);
+			document.write(`номери днів, коли людей було менше за 20: ${visitorsLess20} <br><br>
+			номери днів, коли кількість відвідувачів була мінімальною: ${minPeopleDays} <br><br>
+			номери днів, коли кількість відвідувачів була максимальною: ${maxPeopleDays} <br><br>
+			загальну кількість клієнтів у робочі дні: ${visitorsWorkingDays} <br><br>
+			загальну кількість клієнтів у вихідні дні: ${visitorsWeekends} `);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

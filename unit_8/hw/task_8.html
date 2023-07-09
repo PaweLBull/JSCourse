@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 8 - Task 8</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 8</h4>
+			<p>Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином
+				значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не
+				відмовиться). Знаходити сумарний виграш.
+			</p>
+		</div>
+		<script>
+			const allCashPrizes = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+			function getGameTable(allCashPrizes, minValue, maxValue) {
+				let gameTable = new Array(maxValue - minValue + 1);
+				for (let i = 0; i < allCashPrizes.length;) {
+					let randomIndex = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
+					if (gameTable[(randomIndex - minValue)] == undefined) {
+						gameTable[(randomIndex - minValue)] = allCashPrizes[i];
+						i++;
+					}
+				}
+				console.log(gameTable);
+				return gameTable;
+			}
+			function letsPlayGame(randomGameTable, minValue, maxValue) {
+				let result = 0;
+				let userTry;
+				do {
+					userTry = parseInt(prompt(`Вгадайте, під яким номером знаходиться приз, від ${minValue} до ${maxValue}`));
+					if (randomGameTable[(userTry - minValue)] == '') {
+						alert("Ви вже забрали цей приз");
+						continue;
+					}
+					if (randomGameTable[(userTry - minValue)] != undefined) {
+						result += randomGameTable[(userTry - minValue)];
+						alert(`Вгадали, виграли ${randomGameTable[(userTry - minValue)]} грн. Всього ${result} грн`);
+						randomGameTable[(userTry - minValue)] = '';
+					}
+				} while (!isNaN(userTry));
+				return result;
+			}
+			let randomGameTable = getGameTable(allCashPrizes, -50, 50);
+			let playGame = letsPlayGame(randomGameTable, -50, 50);
+			document.write(`Ваш виграш: ${playGame} грн`)
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 8 - Task 5</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 5</h4>
+			<p>Дано послідовність оцінок учня. Підрахувати кількість:<br>
+				1. двійок.<br>
+				2. кількість хороших оцінок (добре, відмінно).<br>
+				3. кількість оцінок, які нижче середнього.</p>
+		</div>
+		<script>
+			let studentScores = [4, 2, 3, 4, 5, 4, 2, 4, 5, 5, 4, 3, 3, 5, 4]
+			function countScores(studentScores) {
+				let result = [];
+				let counter2 = 0;
+				let counter45 = 0;
+				let counterAverage = 0
+				let sumScores = 0;
+				for (let i = 0; i < studentScores.length; i++) {
+					sumScores += studentScores[i];
+				}
+				let averageScore = sumScores / studentScores.length;
+				// console.log(averageScore);
+				for (let i = 0; i < studentScores.length; i++) {
+					if (studentScores[i] == 2) counter2++;
+					if (studentScores[i] == 4 || studentScores[i] == 5) counter45++;
+					if (studentScores[i] < averageScore) counterAverage++;
+				}
+				return result = [counter2, counter45, counterAverage];
+			}
+			let scoresStats = countScores(studentScores);
+			document.write(`Кількість двійок ${scoresStats[0]} <br>
+			кількість хороших оцінок (добре, відмінно): ${scoresStats[1]} <br>
+			кількість оцінок, які нижче середнього ${scoresStats[2]}`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>
