@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 10 - Tasks 1-13</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задачі 1-13</h4>
+			<p>Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</p>
+		</div>
+		<script>
+			function getPrices(min, max, length) {
+				let result = [];
+				for (let i = 0; i < length; i++) {
+					let randomNum = min + Math.floor(Math.random() * (max - min + 1));
+					result.push(randomNum);
+				}
+				return result;
+			}
+			let prices = getPrices(1, 10000, 12);
+			document.write(`Дано масив: ${prices} <br><br>`);
+
+			let test = [2, 0, 1001, 15, 15, 3, 15, 3, 3, 3, 1203];
+			//===============ЗАДАЧА 1===========================
+			document.write("Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн: <br>");
+			let priceMore1000 = prices.filter((el) => el > 1000);
+			document.write(priceMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 2===========================
+			document.write("Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн: <br>");
+			let indMore1000 = prices.reduce((prevRes, el, i) => {
+				if (el > 1000) prevRes.push(i);
+				return prevRes;
+			}, []
+			);
+			document.write(indMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 3===========================
+			document.write("Сформувати список з тих цін, які більші за попереднє значення: <br>");
+			let priceMorePrevious = prices.filter((el, i, arr) =>
+				i === 0 || el > arr[i - 1]);
+			document.write(priceMorePrevious + "<br> <br>");
+			//===============ЗАДАЧА 4===========================
+			document.write("Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального: <br>");
+			let maxValue = Math.max(...prices);
+			let percentPricesToMax = prices.map((el, i, arr) =>
+				Math.round(el / maxValue * 100));
+			document.write(percentPricesToMax.join("% ") + "%" + "<br> <br>");
+			//===============ЗАДАЧА 5===========================
+			document.write("Підрахувати кількість змін цін: <br>");
+			let valuePriceChanges = prices.reduce((prevElem, el, i, arr) =>
+				el !== arr[i + 1] ? prevElem + 1 : prevElem,
+				0
+			);
+			document.write(valuePriceChanges + "<br> <br>");
+			//===============ЗАДАЧА 6===========================
+			document.write("Визначити, чи є ціна, що менше 1000: <br>");
+			function ifPriceLess1000(prices) {
+				let result;
+				if (prices.some((el) => el < 1000)) result = "Є ціна менша за 1000";
+				else result = "Нема ціни меншої за 1000";
+				return result;
+			}
+			document.write(ifPriceLess1000(prices) + "<br> <br>");
+			//===============ЗАДАЧА 7===========================
+			document.write("Визначати, чи усі ціни більше за 1000: <br>");
+			function ifAllPricesGreater1000(prices) {
+				let result;
+				if (prices.every((el) => el > 1000)) result = "Всі ціни вищі за 1000";
+				else result = "Все таки є ціни менші за 1000";
+				return result;
+			}
+			document.write(ifAllPricesGreater1000(prices) + "<br> <br>");
+			//===============ЗАДАЧА 8===========================
+			document.write("Підрахувати кількість цін, що більше за 1000: <br>");
+			let pricesMore1000 = prices.reduce((prevElem, el) =>
+				el > 1000 ? prevElem + 1 : prevElem,
+				0
+			);
+			document.write(pricesMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 9===========================
+			document.write("Підрахувати суму цін, що більше за 1000: <br>");
+			let sumPricesMore1000 = prices.reduce((prevElem, el) =>
+				el > 1000 ? prevElem + el : prevElem,
+				0
+			);
+			document.write(sumPricesMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 10===========================
+			document.write("Знайти першу ціну, що більше за 1000: <br>");
+			let firstPriceMore1000 = prices.find((el) => el > 1000);
+			document.write(firstPriceMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 11===========================
+			document.write("Знайти індекс першої ціни, що більше за 1000: <br>");
+			let firstPriceIndexMore1000 = prices.findIndex((el) => el > 1000);
+			document.write(firstPriceIndexMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 12===========================
+			document.write("Знайти останню ціну, що більше за 1000: <br>");
+			let lastPriceMore1000 = prices.findLast((el) => el > 1000);
+			document.write(lastPriceMore1000 + "<br> <br>");
+			//===============ЗАДАЧА 13===========================
+			document.write("Знайти індекс останньої ціни, що більше за 1000: <br>");
+			let lastPriceIndexMore1000 = prices.findLastIndex((el) => el > 1000);
+			document.write(lastPriceIndexMore1000 + "<br> <br>");
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		border: 3px solid yellow;
+	}
+
+	td {
+		border: 1px solid rgb(83, 83, 233);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(83, 83, 233);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

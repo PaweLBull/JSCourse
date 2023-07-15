@@ -33,6 +33,9 @@
 			<li><a target="_blank" href="unit_9/homework.html">Unit 9</a>
 				<a target="_blank" href="unit_9/additional.html">Unit 9 (extra)</a>
 			</li>
+			<li><a target="_blank" href="unit_10/homework.html">Unit 10</a>
+				<!-- <a target="_blank" href="unit_10/additional.html">Unit 10 (extra)</a> -->
+			</li>
 		</ol>
 	</div>
 </body>
@@ -93,7 +96,7 @@
 		padding: 3rem;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		/* align-items: flex-start; */
 	}
 
 	@media (max-width: 767px) {
@@ -130,9 +133,11 @@
 	}
 
 	.rootpage__list {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		gap: 30px;
+		/* flex-direction: column;
+		align-items: flex-start; */
 	}
 
 	.rootpage__list li:not(:last-child) {

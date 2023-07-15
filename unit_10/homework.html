@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 10</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework №10</h1>
+			<div class="subtitle">Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000)</div>
+			<div class="homework__task">
+				<a target="_blank" href="hw/task_1.html">
+					<div class="task">
+						<h4>Задача 1</h4>
+						<p>Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 2</h4>
+						<p>Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 3</h4>
+						<p>Сформувати список з тих цін, які більші за попереднє значення
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 4</h4>
+						<p>Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 5</h4>
+						<p>Підрахувати кількість змін цін
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 6</h4>
+						<p>Визначити, чи є ціна, що менше 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 7</h4>
+						<p>Визначати, чи усі ціни більше за 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 8</h4>
+						<p>Підрахувати кількість цін, що більше за 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 9</h4>
+						<p>Підрахувати суму цін, що більше за 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 10</h4>
+						<p>Знайти першу ціну, що більше за 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 11</h4>
+						<p>Знайти індекс першої ціни, що більше за 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 12</h4>
+						<p>Знайти останню ціну, що більше за 1000
+						</p>
+					</div>
+					<div class="task">
+						<h4>Задача 13</h4>
+						<p>Знайти індекс останньої ціни, що більше за 1000
+						</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		/* height: 100%; */
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task a {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	.task:hover h4 {
+		text-decoration: underline;
+	}
+
+	.task:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	.task {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.subtitle {
+		text-align: center;
+		font-size: 25px;
+		margin-bottom: 25px;
+		color: rgb(115, 27, 0);
+		font-weight: 700;
+	}
+
+	h4 {
+		/* text-align: center; */
+		font-size: 25px;
+		color: greenyellow;
+		margin-bottom: 5px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>
