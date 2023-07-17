@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 11</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework 11</h1>
+			<div class="homework__task">
+				<a target="_blank" href="hw/task_1.html">
+					<h4>Задача 1</h4>
+					<p>Знайти суми елементів у вказаній області (масиви розділені на 4 рівні частини)<br>
+						<span>1.</span><img src="hw/1.jpg">
+						<span>2.</span><img src="hw/2.jpg"><br>
+						<span>3.</span><img src="hw/3.jpg">
+						<span>4.</span><img src="hw/4.jpg"> <br>
+						5. Суму парних рядків<br>
+						6. Суму непарних стовпців<br>
+						7. У парних рядках – непарні стовпці, у непарних – парні.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_2.html">
+					<h4>Задача 2</h4>
+					<p>Дано інформацію про прибуток К магазинів протягом тижня. Знайти:<br><br>
+						1. загальний прибуток кожного масиву за тиждень.<br>
+						2. загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за
+						вівторок, і т.д.).<br>
+						3. загальний прибуток за робочі дні.<br>
+						4. загальний прибуток за вихідні дні.<br>
+						5. максимальний прибуток за середу.<br>
+						6. сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200<br>
+						7. відсортувати кожен тиждень за зростанням<br>
+						8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при
+						порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків <br>
+						9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків
+						треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з
+						елементів повинен іти раніше).
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_3.html">
+					<h4>Задача 3</h4>
+					<p>Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач
+						стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не
+						закінчаться снаряди.
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>

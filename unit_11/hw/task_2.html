@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 11 - Task 2</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 2</h4>
+			<p>Дано інформацію про прибуток К магазинів протягом тижня. Знайти:<br><br>
+				1. загальний прибуток кожного масиву за тиждень.<br>
+				2. загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за
+				вівторок, і т.д.).<br>
+				3. загальний прибуток за робочі дні.<br>
+				4. загальний прибуток за вихідні дні.<br>
+				5. максимальний прибуток за середу.<br>
+				6. сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200<br>
+				7. відсортувати кожен тиждень за зростанням<br>
+				8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при
+				порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків <br>
+				9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків
+				треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з
+				елементів повинен іти раніше).</p>
+		</div>
+		<script>
+			const numMin = 1;
+			const numMax = 1500;
+			const shopsCount = 5;
+			function getRandomNum(minNun, maxNum) {
+				return minNun + Math.floor(Math.random() * (maxNum - minNun + 1));
+			}
+			function getDaysWeek(minNun, maxNum, daysLength = 7) {
+				let days = [];
+				for (let i = 0; i < daysLength; i++) {
+					days.push(getRandomNum(minNun, maxNum));
+				}
+				return days;
+			}
+			function getShopsCount(shopLength, minNun, maxNum, daysLength = 7) {
+				let shops = [];
+				for (let k = 0; k < shopLength; k++) {
+					shops.push(getDaysWeek(minNun, maxNum, daysLength));
+				}
+				return shops;
+			}
+			let shopsFinancials = getShopsCount(shopsCount, numMin, numMax);
+
+			document.write(`Згенерований прибуток ${shopsCount} магазинів протягом тижня: <br>[ ${shopsFinancials[0].join(" &#10024; ")} ]<br>[ ${shopsFinancials[1].join(" &#11088; ")} ]<br>[ ${shopsFinancials[2].join(" &#128171; ")} ]<br>[ ${shopsFinancials[3].join(" &#11088 ")} ]<br>[ ${shopsFinancials[4].join(" &#10024; ")} ] <br><br>`);
+
+			//============================= 1 ============================================
+			function weekFinancialStatistics(arr = shopsFinancials) {
+				let finance = [];
+				for (let shop = 0; shop < arr.length; shop++) {
+					let sum = 0;
+					for (let day = 0; day < arr[shop].length; day++) {
+						sum += arr[shop][day];
+					}
+					finance.push(sum);
+				}
+				return finance;
+			}
+			document.write(`Загальний прибуток кожного магазину за тиждень: ${weekFinancialStatistics().join(' грн, ')} грн <br><br>`);
+			//============================= 2 ============================================
+			function daysFinancialStatistics(dayStart, dayLast, arr = shopsFinancials) {
+				let sum = 0;
+				for (let shop = 0; shop < arr.length; shop++) {
+					for (let day = dayStart; day < dayLast; day++) {
+						sum += arr[shop][day];
+					}
+				}
+				return sum;
+			}
+			document.write(`Загальний прибуток за: <br> понеділок: ${daysFinancialStatistics(0, 1)} грн <br>
+			вівторок: ${daysFinancialStatistics(1, 2)} грн <br>
+			середу: ${daysFinancialStatistics(2, 3)} грн <br>
+			четвер: ${daysFinancialStatistics(3, 4)} грн <br>
+			п'ятницю: ${daysFinancialStatistics(4, 5)} грн <br>
+			суботу: ${daysFinancialStatistics(5, 6)} грн <br>
+			неділю: ${daysFinancialStatistics(6, 7)} грн <br><br>`);
+			//============================= 3 ============================================
+			document.write(`Загальний прибуток за робочі дні: ${daysFinancialStatistics(0, 5)}грн <br>`);
+			//============================= 4 ============================================
+			document.write(`Загальний прибуток за вихідні дні: ${daysFinancialStatistics(5, 7)}грн <br>`);
+			//============================= 5 ============================================
+			function maxDayFinancial(dayStart, dayLast, arr = shopsFinancials) {
+				let dayValues = []
+				for (let shop = 0; shop < arr.length; shop++) {
+					for (let day = dayStart; day < dayLast; day++) {
+						dayValues.push(arr[shop][day]);
+					}
+				}
+				return Math.max(...dayValues);
+			}
+			document.write(`Загальний прибуток середу: ${maxDayFinancial(2, 3)}грн <br><br>`);
+			//============================= 6 ============================================
+			function valuesMore200(arr = shopsFinancials) {
+				let more200 = arr.flat(Infinity).filter(el => el > 200);
+				return more200;
+			}
+			document.write(`Масив прибутків вище за 200 грн: ${valuesMore200()}<br><br>`);
+			//============================= 7 ============================================
+			let newShopsFinancialsForEx7 = JSON.parse(JSON.stringify(shopsFinancials)); // в умові немає задачі створити новий массив, але створив копію массиву, бо якщо міняти вихідний, це вплине на результат наступної задачі.
+			function getAscendingOrder(arr = newShopsFinancialsForEx7) {
+				for (let shop = 0; shop < arr.length; shop++)
+					arr[shop].sort((el1, el2) => el1 - el2);
+				return arr;
+			}
+			let valuesInAscendingOrder = getAscendingOrder();
+			document.write(`Згенерований прибуток ${shopsCount} магазинів протягом тижня в порядку зростання: <br>[ ${valuesInAscendingOrder[0].join(" &#8611; ")} ]<br>[ ${valuesInAscendingOrder[1].join(" &#8611; ")} ]<br>[ ${valuesInAscendingOrder[2].join(" &#8611; ")} ]<br>[ ${valuesInAscendingOrder[3].join(" &#8611; ")} ]<br>[ ${valuesInAscendingOrder[4].join(" &#8611; ")} ] <br><br>`);
+			//============================= 8 ============================================
+			// не створюю новий массив, зміна порядку рядків вихідного масиву не впливає на результат наступної задачі
+			function getShopsDescendingOrder(arr = shopsFinancials) {
+				for (let shop = 0; shop < arr.length; shop++)
+					arr.sort((el1, el2) => Math.max(...el2) - Math.max(...el1));
+				return arr;
+			}
+			let shopsInDescendingOrder = getShopsDescendingOrder();
+			document.write(`Згенерований прибуток ${shopsCount} магазинів протягом тижня в порядку спадання відносно максимального денного заробітку: <br>[ ${shopsInDescendingOrder[0].join(" ↧ ")} ]<br>[ ${shopsInDescendingOrder[1].join(" ↧ ")} ]<br>[ ${shopsInDescendingOrder[2].join(" ↧ ")} ]<br>[ ${shopsInDescendingOrder[3].join(" ↧ ")} ]<br>[ ${shopsInDescendingOrder[4].join(" ↧ ")} ] <br><br>`);
+			//============================= 9 ============================================
+			function getShopsTotalInDescendingOrder(arr = shopsFinancials) {
+				for (let shop = 0; shop < arr.length; shop++)
+					// console.log(arr[shop].reduce((prevEl, dayVal) => prevEl + dayVal, 0));
+					arr.sort((el1, el2) =>
+						el2.reduce((prevElem, dayVal) => prevElem + dayVal, 0) - el1.reduce((prevElem, dayVal) => prevElem + dayVal, 0));
+				return arr;
+			}
+			let shopsTotalInDescendingOrder = getShopsTotalInDescendingOrder();
+			document.write(`Згенерований прибуток ${shopsCount} магазинів протягом тижня в порядку спадання відносно суми тижневого заробітку: <br>[ ${shopsTotalInDescendingOrder[0].join(" &#11015; ")} ]<br>[ ${shopsTotalInDescendingOrder[1].join(" &#11015; ")} ]<br>[ ${shopsTotalInDescendingOrder[2].join(" &#11015; ")} ]<br>[ ${shopsTotalInDescendingOrder[3].join(" &#11015; ")} ]<br>[ ${shopsTotalInDescendingOrder[4].join(" &#11015; ")} ] <br><br>`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

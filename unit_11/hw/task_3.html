@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 11 - Task 3</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 3</h4>
+			<p>Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач
+				стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не
+				закінчаться снаряди.</p>
+		</div>
+		<script>
+			const MAX = 5;
+			const celsInRow = 6;
+			let userTries = parseInt(prompt("Введіть кільскість снарядів"));
+			function getZeroBattleField(el = celsInRow) {
+				let table = [];
+				for (let row = 0; row < el; row++) {
+					let tableRow = new Array(el);
+					table.push(tableRow.fill(0));
+				}
+				// або 
+				// let table = JSON.parse(JSON.stringify(Array(el).fill(Array(el).fill(0))));
+				return table;
+			}
+			function getBattleField(arr, maxItem = MAX) {
+				let randomRow;
+				let randomCol;
+				for (let i = 0; i < maxItem;) {
+					randomRow = Math.floor(Math.random() * (maxItem + 1));
+					randomCol = Math.floor(Math.random() * (maxItem + 1));
+					if (arr[randomRow][randomCol] === 0) {
+						arr[randomRow][randomCol] = 1;
+						i++;
+					}
+				}
+				return arr;
+			}
+			let zeroBattleField = getZeroBattleField();
+			let battleField = getBattleField(zeroBattleField);
+			// console.log(battleField);
+
+			function getUserGame(battleField, bullets, shipNumber = MAX) {
+				do {
+					let userRow = parseInt(prompt(`Введіть координату по горизонталі від 1 до ${celsInRow}`));
+					let useCol = parseInt(prompt(`Введіть координату по вертикалі від 1 до ${celsInRow}`));
+					if (battleField[(userRow - 1)][(useCol - 1)] !== 0) {
+						alert("Ви потопили корабель!");
+						shipNumber--;
+						battleField[(userRow - 1)][(useCol - 1)] = 0;
+					} else alert("Ви не попали, спробуйте ще");
+					bullets--;
+				} while (shipNumber > 0 && bullets > 0);
+				if (shipNumber == 0) document.write('Ви потопили всі кораблі');
+				if (bullets == 0) document.write('У вас закінчилися снаряди');
+			}
+			getUserGame(battleField, userTries);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

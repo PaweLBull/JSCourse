@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 11 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>Знайти суми елементів у вказаній області (масиви розділені на 4 рівні частини)<br>
+				1. <img src="1.jpg">
+				2. <img src="2.jpg">
+				3. <img src="3.jpg">
+				4. <img src="4.jpg"> <br>
+				5. Суму парних рядків<br>
+				6. Суму непарних стовпців<br>
+				7. У парних рядках – непарні стовпці, у непарних – парні.
+			</p>
+		</div>
+		<script>
+			const arrayNumbers = [
+				[4, 0, 17, 8, -5, 4],
+				[-7, 10, 14, -1, 0, 3],
+				[0, 9, 5, 7, -11, 8],
+				[-19, 4, 1, 6, 2, -9]];
+			document.write(`Дано масив: <br>[ ${arrayNumbers[0].join(" * ")} ]<br>[ ${arrayNumbers[1].join(" * ")} ]<br>[ ${arrayNumbers[2].join(" * ")} ]<br>[ ${arrayNumbers[3].join(" * ")} ] <br><br>`)
+			//========================= 1 =========================
+			const rowMax = arrayNumbers.length;
+			const halfRows = rowMax / 2;
+			const colMax = arrayNumbers[0].length;
+			const halfCol = colMax / 2;
+			function sumSection(arr, row, rowLim, col, colLim, rowStep = 1, colStep = 1) {
+				let sum = 0;
+				for (let rowNum = row; rowNum < rowLim; rowNum += rowStep) {
+					for (let colNum = col; colNum < colLim; colNum += colStep) {
+						sum += arr[rowNum][colNum];
+					}
+				}
+				return sum;
+			}
+			document.write(`Сума елементів в області 1: ${sumSection(arrayNumbers, 0, halfRows, 0, halfCol)} <br>`);
+			//========================= 2 =========================
+			document.write(`Сума елементів в області 2: ${sumSection(arrayNumbers, 0, halfRows, halfCol, colMax)}<br>`);
+			//========================= 3 =========================
+			document.write(`Сума елементів в області 3: ${sumSection(arrayNumbers, halfRows, rowMax, 0, halfCol)}<br>`);
+			//========================= 4 =========================
+			document.write(`Сума елементів в області 4: ${sumSection(arrayNumbers, halfRows, rowMax, halfCol, colMax)}<br>`);
+			//========================= 5 =========================
+			document.write(`Сума елементів в парних рядках(0 і 2): ${sumSection(arrayNumbers, 0, rowMax, 0, colMax, 2)}<br>`);
+			//========================= 6 =========================
+			document.write(`Сума елементів в непарних стовпцях(1, 3, 5): ${sumSection(arrayNumbers, 0, rowMax, 1, colMax, 1, 2)}<br>`);
+			//========================= 7 =========================
+			let oddRowEvenCol = sumSection(arrayNumbers, 0, rowMax, 1, colMax, 2, 2);
+			let evenRowOddCol = sumSection(arrayNumbers, 1, rowMax, 0, colMax, 2, 2);
+			let sumMixRowCol = oddRowEvenCol + evenRowOddCol;
+			document.write(`Сума елементів якщо у парних рядках – непарні стовпці, у непарних – парні: ${sumMixRowCol}<br>`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		border: 3px solid yellow;
+	}
+
+	td {
+		border: 1px solid rgb(83, 83, 233);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(83, 83, 233);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>
