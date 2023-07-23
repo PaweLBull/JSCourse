@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 12 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>
+				Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних
+				таблиць за зразком. Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран.
+			</p>
+			<img src="4.jpg" width="250px">
+		</div>
+		<script>
+			let array = [2, 8, 1, 0, 6];
+			document.write(`Даний масив: ${array} <br><br>`);
+			//====================== SWAP ===========================
+			function swap(a, i, j) {
+				let tmp = a[i];
+				a[i] = a[j];
+				a[j] = tmp;
+			}
+			//============================ BUBBLE ============================================
+			document.write('Сортування бульбашкою' + '<br>');
+			let bubleArray = [...array];
+			function bubbleSorting(arr = bubleArray) {
+				let changed;
+				do {
+					changed = false;
+					for (let i = 1; i < arr.length; i++) {
+						if (arr[i - 1] > arr[i]) {
+							swap(arr, i, i - 1)
+							changed = true;
+							document.write(`[${arr}]<br>`);
+						}
+					}
+				} while (changed);
+				return arr;
+			}
+			let bubbleSortedArray = bubbleSorting();
+			document.write(`<br><br>`);
+			//============================ COCKTAIL ============================================
+			document.write('Сортування змішуванням' + '<br>');
+			let cocktailArray = [...array];
+			function cocktailSorting(arr = cocktailArray) {
+				let startIndex = 0;
+				let endIndex = arr.length - 1;
+				let changed;
+				while (startIndex < endIndex) {
+					for (let i = startIndex; i < endIndex; i++) {
+						if (arr[i] > arr[i + 1]) {
+							swap(arr, i, i + 1);
+							document.write(`[${arr}]<br>`);
+						}
+					}
+					endIndex--;
+					for (let i = endIndex; i > startIndex; i--) {
+						if (arr[i] < arr[i - 1]) {
+							swap(arr, i, i - 1);
+							document.write(`[${arr}]<br>`);
+						}
+					}
+					startIndex++;
+				}
+				return arr;
+			}
+			let cocktailSortedArray = cocktailSorting();
+			document.write(`<br><br>`);
+			//============================ INSERT ============================================
+			document.write('Сортування включенням' + '<br>');
+			let insertArray = [...array];
+			function insertSorting(arr = insertArray) {
+				for (let i = 1; i < arr.length; i++) {
+					let currentElem = arr[i];
+					let j = i - 1;
+					while (i >= 0 && arr[j] > currentElem) {
+						arr[j + 1] = arr[j];
+						j = j - 1;
+					}
+					arr[j + 1] = currentElem;
+					document.write(`[${arr}]<br>`);
+				}
+				return arr;
+			}
+			let insertSortedArray = insertSorting();
+			document.write(`<br><br>`);
+			//============================ СHOISE ============================================
+			document.write('Сортування вибором' + '<br>');
+			let choiseArray = [...array];
+			function getChoiseSorting(arr = choiseArray) {
+				let prevLastElemIndex = arr.length - 2;
+				for (let i = 0; i <= prevLastElemIndex; i++) {
+					let minIndex = i;
+					for (let j = i + 1; j < arr.length; j++) {
+						if (arr[j] < arr[minIndex]) minIndex = j;
+					}
+					if (i !== minIndex) {
+						swap(arr, i, minIndex);
+						document.write(`[${arr}]<br>`);
+					}
+				}
+				return arr;
+			}
+			let choiseSortedArray = getChoiseSorting();
+			document.write(`<br><br>`);
+			//============================ QUICK ============================================
+			document.write('Швидке сортування' + '<br>');
+			let quickArray = [...array];
+			function partition(p, q, arr) {
+				let pivot = arr[q];
+				let i = p - 1;
+				for (let j = p; j < q; j++) {
+					if (arr[j] <= pivot) {
+						i = i + 1;
+						swap(arr, i, j);
+						document.write(`[${arr}]<br>`);
+					}
+				}
+				swap(arr, i + 1, q);
+				return i + 1;
+			}
+			function getQuickSorting(p, q, arr) {
+				if (p >= q) return;
+				let i = partition(p, q, arr);
+				getQuickSorting(p, i - 1, arr);
+				getQuickSorting(i + 1, q, arr);
+			}
+			let quichSortedArray = getQuickSorting(0, quickArray.length - 1, quickArray);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+</style>
+
+</html>

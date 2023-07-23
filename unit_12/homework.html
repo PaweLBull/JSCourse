@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 12</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework 12</h1>
+			<div class="homework__task">
+				<a target="_blank" href="hw/task_1.html">
+					<h4>Задача 1</h4>
+					<p>
+						Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування
+						бульбашкою.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_2.html">
+					<h4>Задача 2</h4>
+					<p>Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування змішуванням.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_3.html">
+					<h4>Задача 3</h4>
+					<p> Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування
+						включеннями.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_4.html">
+					<h4>Задача 4</h4>
+					<p>
+						Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних
+						таблиць за зразком. Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран.
+					</p>
+					<img src="hw/4.jpg" alt="4" width="220px">
+				</a>
+				<a target="_blank" href="hw/task_5.html">
+					<h4>Задача 5</h4>
+					<p>Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я
+						«Olga» і під яким індексом.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_6.html">
+					<h4>Задача 6</h4>
+					<p>Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я
+						довжиною 5 символів і під яким індексом.
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>
