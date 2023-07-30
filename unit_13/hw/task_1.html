@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 13 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>Нехай <i>x<sub>0</sub> = 1, x<sub>i</sub> = x<sub>i-1</sub> + 2i</i>, де <i>i = 1,2...</i>. Визначити
+				<i>x<sub>10</sub></i>. Розв’язати звикористанням рекурсивних і нерекурсивних алгоритмів.
+			</p>
+		</div>
+		<script>
+			const ind = 10;
+			function recursion(i) {
+				return i === 0 ? 1 : recursion(i - 1) + 2 * i;
+			}
+			document.write(recursion(ind) + '<br>');
+			//========== нерекурсивним методом ===========
+			function unRecursion(maxInd) {
+				let elem = 1;
+				for (let i = 0; i <= maxInd; i++) {
+					elem += 2 * i;
+				}
+				return elem;
+			}
+			document.write(unRecursion(ind));
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		border: 3px solid yellow;
+	}
+
+	td {
+		border: 1px solid rgb(83, 83, 233);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(83, 83, 233);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

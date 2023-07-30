@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 13</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework 13</h1>
+			<div class="homework__task">
+				<a target="_blank" href="hw/task_0.html">
+					<h4>Задача 0</h4>
+					<p>
+						Реалізувати рекурсивну функцію знаходження степеня числа а
+					</p>
+					<img src="hw/0.png" alt="0" width="300px">
+				</a>
+				<a target="_blank" href="hw/task_1.html">
+					<h4>Задача 1</h4>
+					<p>
+						Нехай <i>x<sub>0</sub> = 1, x<sub>i</sub> = x<sub>i-1</sub> + 2i</i>, де <i>i = 1,2...</i>. Визначити
+						<i>x<sub>10</sub></i>. Розв’язати звикористанням рекурсивних інерекурсивних алгоритмів.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_2.html">
+					<h4>Задача 2</h4>
+					<p>Реалізувати бінарний пошук (розглядали на попередніх уроках) з використанням рекурсивного алгоритму.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_3.html">
+					<h4>Задача 3</h4>
+					<p>З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами
+						видавати по одне значення від зад1аного мінімального до заданого максимального. Якщо значення досягне
+						максимального, то наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір
+						номерів місяців.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_4.html">
+					<h4>Задача 4</h4>
+					<p>
+						З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами
+						видавати по одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач».
+						Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова.
+						Підрахувати кількість вгаданих букв.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_5.html">
+					<h4>Задача 5</h4>
+					<p>Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і
+						робиться перевірка.
+					</p>
+				</a>
+				<a target="_blank" href="hw/task_6.html">
+					<h4>Задача 6</h4>
+					<p>Через 20 секунд перейти на сайт ukr.net. Для цього через 20 секунд після відкриття треба виконати
+						команду:
+						window.location.href = 'https://www.ukr.net/'
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+</style>
+
+</html>
