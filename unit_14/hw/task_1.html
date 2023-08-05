@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 14 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>Описати масив об’єктів – сайтів розроблених компанією з такими властивостями <br>
+				----- Властивості ------ <br>
+				- назва компанії на час розробки (назву періодично змінюють)<br>
+				- власник компанії<br>
+				- споснсори (масив спонсорів):<br>
+				--- прізвище спонсора<br>
+				--- ім’я спонсора<br>
+				--- сума вкладень спонсора<br>
+				- рік випуску<br>
+				- вартість сайту<br><br>
+				Знайти:<br>
+				1. загальну вартість усіх сайтів<br>
+				2. кількість сайтів, що було зроблено між 2000 та 2009 рр.<br>
+				3. кількість сайтів, де сума спонсорських вкладень була більшою за 30000<br>
+				4. створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у
+				масив)<br>
+				5. знайти рік, коли прибуток був найбільшим<br>
+				6. упорядкувати список за спаданням прибутку<br>
+				7. Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 190000 і більше 190000
+			</p>
+		</div>
+		<script>
+			const webSitesCreated = [
+				{
+					companyName: "Inter Miami",
+					owner: "David Beckham",
+					sponsors: [
+						{
+							surname: "Messi",
+							name: "Lionel",
+							deposit: 10000
+						},
+						{
+							surname: "Busquets",
+							name: "Sergio",
+							deposit: 9000
+						},
+						{
+							surname: "Alba",
+							name: "Jordi",
+							deposit: 8000
+						}
+					],
+					year: 2020,
+					value: 100000
+				},
+				{
+					companyName: "Manchester city",
+					owner: "Mansour",
+					sponsors: [
+						{
+							surname: "De Bruyne",
+							name: "Kevin",
+							deposit: 12000
+						},
+						{
+							surname: "Haaland",
+							name: "Erling",
+							deposit: 9500
+						},
+						{
+							surname: "Silva",
+							name: "Bernardo",
+							deposit: 12000
+						}
+					],
+					year: 1980,
+					value: 250000
+				},
+				{
+					companyName: "Barcelona",
+					owner: "Joan Laporta",
+					sponsors: [
+						{
+							surname: "Gonzalez",
+							name: "Pedri",
+							deposit: 13000
+						},
+						{
+							surname: "Gavira",
+							name: "Gavi",
+							deposit: 10000
+						},
+						{
+							surname: "Araujo",
+							name: "Ronald",
+							deposit: 11000
+						}
+					],
+					year: 1999,
+					value: 200000
+				},
+				{
+					companyName: "Real Madrid",
+					owner: "Florentino Perez",
+					sponsors: [
+						{
+							surname: "Modric",
+							name: "Luca",
+							deposit: 10000
+						},
+						{
+							surname: "Cuortois",
+							name: "Thibaut",
+							deposit: 11000
+						},
+						{
+							surname: "Kroos",
+							name: "Toni",
+							deposit: 8000
+						}
+					],
+					year: 1996,
+					value: 230000
+				},
+				{
+					companyName: "Arsenal FC",
+					owner: "Sten Kronke",
+					sponsors: [
+						{
+							surname: "Zinchenko",
+							name: "Oleksandr",
+							deposit: 15000
+						},
+						{
+							surname: "Rice",
+							name: "Declan",
+							deposit: 10000
+						},
+						{
+							surname: "Odegaard",
+							name: "Martin",
+							deposit: 11000
+						}
+					],
+					year: 2006,
+					value: 170000
+				},
+				{
+					companyName: "PSG",
+					owner: "Nasser Al-Khelaifi",
+					sponsors: [
+						{
+							surname: "Mbappe",
+							name: "Kylian",
+							deposit: 14000
+						},
+						{
+							surname: "Gianluigi",
+							name: "Donnarumma",
+							deposit: 8000
+						},
+						{
+							surname: "Da Silva",
+							name: "Neymar",
+							deposit: 12000
+						}
+					],
+					year: 2000,
+					value: 190000
+				},
+				{
+					companyName: "AC Milan",
+					owner: "Paolo Skaroni",
+					sponsors: [
+						{
+							surname: "Leah",
+							name: "Rafael",
+							deposit: 9000
+						},
+						{
+							surname: "Giroud",
+							name: "Olivier",
+							deposit: 6000
+						},
+						{
+							surname: "Florenzi",
+							name: "Alessandro",
+							deposit: 5000
+						}
+					],
+					year: 1999,
+					value: 120000
+				},
+			]
+			//========================= 1 =========================================
+			let webSitesTotalValue = webSitesCreated.reduce(
+				(prevValue, webSitesCreated) => prevValue + webSitesCreated.value,
+				0);
+			document.write(`Загальна вартість усіх сайтів: ${webSitesTotalValue} <br><br>`);
+
+			//========================= 2 =========================================
+			function getWebSitesCountInTerms(webSitesCreated, minYear, maxYear) {
+				return webSitesCreated.reduce((prevValue, webSitesCreated) =>
+					webSitesCreated.year >= minYear && webSitesCreated.year <= maxYear ?
+						prevValue + 1 : prevValue, 0);
+			}
+			let webSitesCountInTerms = getWebSitesCountInTerms(webSitesCreated, 2000, 2009);
+			document.write(`Kількість сайтів, що було зроблено між 2000 та 2009 рр.: ${webSitesCountInTerms} <br><br>`);
+
+			//========================= 3 =========================================
+			function webSitesWithBigDeposits(mainArr) {
+				let count = 0;
+				for (let obj of mainArr) {
+					let totalDeposits = obj.sponsors.reduce((prevDeposit, sponsors) =>
+						prevDeposit + sponsors.deposit, 0);
+					if (totalDeposits > 30000) count++;
+				}
+				return count;
+			}
+			let bigDeposits = webSitesWithBigDeposits(webSitesCreated);
+			document.write(`Кількість сайтів, де сума спонсорських вкладень була більшою за 30000: ${bigDeposits} <br><br>`);
+
+			//========================= 4 =========================================
+			function getAllSponsors(mainArr) {
+				let allSponsors = []
+				for (const obj of mainArr) {
+					let allSponsorsObj = obj.sponsors.map(obj => `${obj.name} ${obj.surname}`);
+					allSponsors.push(allSponsorsObj);
+				}
+				return allSponsors;
+			}
+			let allSponsors = getAllSponsors(webSitesCreated);
+			document.write(`Загальний список усіх спонсорів: ${allSponsors.flat(Infinity).join(' &#169 ')} <br><br>`);
+
+			//========================= 5 =========================================
+			function getYearOfMaxValue(mainArr) {
+				let maxSiteValue = -Infinity;
+				let yearOfMaxValue;
+				for (let obj of mainArr) {
+					if (obj.value > maxSiteValue) {
+						maxSiteValue = obj.value;
+						yearOfMaxValue = obj.year;
+					}
+				}
+				return yearOfMaxValue;
+			}
+			let yearOfMaxValue = getYearOfMaxValue(webSitesCreated);
+			document.write(`Рік, коли прибуток був найбільшим: ${yearOfMaxValue} <br><br>`);
+
+			//========================= 6 =========================================
+
+			function getSortedArrayInDescendingOrder(mainArr) {
+				return JSON.parse(JSON.stringify(mainArr)).sort((valueLess, valueMore) => valueMore.value - valueLess.value);
+			}
+			let sortedArrayInDescendingOrder = getSortedArrayInDescendingOrder(webSitesCreated);
+			console.log(sortedArrayInDescendingOrder);
+			document.write(`Список за спаданням прибутку: ${JSON.stringify(sortedArrayInDescendingOrder)} <br><br>`);
+
+			//========================= 7 =========================================
+			function getListValuesLessLimit(mainArr, lim = 190000) {
+				return JSON.parse(JSON.stringify(mainArr)).filter((obj) => obj.value <= lim);
+			}
+			function getListValuesMoreLimit(mainArr, lim = 190000) {
+				return JSON.parse(JSON.stringify(mainArr)).filter((obj) => obj.value > lim);
+			}
+			let listValuesLessLimit = getListValuesLessLimit(webSitesCreated);
+			let listValuesMoreLimit = getListValuesMoreLimit(webSitesCreated);
+			console.log(listValuesLessLimit);
+			console.log(listValuesMoreLimit);
+			document.write(`Список з копіями об’єктів, що містять сайти з вартістю 190000 і менше: ${JSON.stringify(listValuesLessLimit)} <br><br>`);
+			document.write(`Список з копіями об’єктів, що містять сайти з вартістю більше 190000: ${JSON.stringify(listValuesMoreLimit)} <br><br>`);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		border: 3px solid yellow;
+	}
+
+	td {
+		border: 1px solid rgb(83, 83, 233);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(83, 83, 233);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>
