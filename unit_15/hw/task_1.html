@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 15 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>
+				Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому
+				випадку.<br><br>
+			</p>
+			<table>
+				<tr>
+					<td>Тир</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Поля(властивості)</td>
+					<td>Масив, у якому зберігається поле з зайцями</td>
+				</tr>
+				<tr>
+					<td>Методи (дії)</td>
+					<td>Метод пострілу (задається позиція пострілу)<br>
+						Виведення ігрового поля
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script>
+			function RangeGame(cells) {
+				this.field = this.generateGameField(cells);
+			}
+			RangeGame.prototype.getRandomNumber = function (minValue, maxValue) {
+				return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+			}
+			RangeGame.prototype.generateGameField = function (cellNumbers = 12, rabbitNum = 3) {
+				let gameField = new Array(cellNumbers).fill(0);
+				for (let cellNum = 0; cellNum < rabbitNum;) {
+					let randScore = this.getRandomNumber(1, cellNumbers);
+					if (gameField[randScore - 1] !== 1) {
+						gameField[randScore - 1] = 1;
+						cellNum++;
+					}
+				}
+				return gameField;
+			}
+			RangeGame.prototype.shoot = function () {
+				return parseInt(prompt(`Введіть номер поля для пострілу від 1 до ${this.field.length}`));
+			}
+			RangeGame.prototype.playGame = function () {
+				let countCells = this.field.length;
+				do {
+					let userShoot = this.shoot();
+					if (this.field[userShoot - 1] === 1) {
+						alert("Ви вбили зайця");
+						this.field[userShoot - 1] = 0;
+					}
+					else alert("Не попали, спробуйте ще");
+					countCells--;
+					if (!this.field.includes(1)) {
+						document.write(`Вбили всіх зайців з ${this.field.length - countCells} спроб`);
+						break;
+					}
+				} while (countCells > 0);
+			}
+			let userGame = new RangeGame(10);
+			userGame.playGame();
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

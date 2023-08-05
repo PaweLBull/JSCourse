@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 15 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>
+				Розробити клас Baner.<br><br>
+			</p>
+			<table>
+				<tr>
+					<td>Поля</td>
+					<td>Масив об’єктів ( графічних зображень та посилань на сайти)
+					</td>
+				</tr>
+				<tr>
+					<td>Методи</td>
+					<td>Метод випадкового вибору об’єкта (графічного зображення та посилання)<br>
+						Метод виведення випадкового банера
+					</td>
+				</tr>
+
+			</table>
+		</div>
+		<script>
+			let picturesAndLinks = [
+				{
+					image: '../hw/1.jpg',
+					link: 'https://eneyida.tv/8531-smert-semy-koroliv.html'
+				},
+				{
+					image: '../hw/2.jpg',
+					link: 'https://uakino.lu/30600-tur-de-shans-2013.html'
+				},
+				{
+					image: '../hw/3.jpg',
+					link: 'https://eneyida.tv/3645-pochaty-znovu-hoch-raz-v-zhytti.html'
+				},
+				{
+					image: '../hw/4.jpg',
+					link: 'https://eneyida.tv/4991-avgust-rash-avgust-rash.html'
+				},
+			]
+			class Baner {
+				constructor(banners) {
+					this.banners = banners;
+				}
+				getRandomNum(minNum, maxNum) {
+					return minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+				}
+				randomBaner() {
+					let randomInd = this.getRandomNum(0, this.banners.length - 1);
+					return `<a target="_blank" href="${this.banners[randomInd].link}"><img src="${this.banners[randomInd].image}"></a>`;
+				}
+			}
+			let banner = new Baner(picturesAndLinks);
+			document.write(banner.randomBaner());
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>
