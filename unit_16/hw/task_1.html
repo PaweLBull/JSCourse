@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 16 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>
+				Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою
+				із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи
+				років. Введення та виведення дати реалізувати за допомогою методу toString.
+			</p>
+		</div>
+		<script>
+			class TDate {
+				#day;
+				#month;
+				#year;
+				constructor(day, month, year) {
+					this.Day = day;
+					this.Month = month;
+					this.Year = year;
+				}
+				get Day() {
+					return this.#day;
+				}
+				set Day(newValue) {
+					if (newValue <= 0 || newValue > 31) throw new Error('Некоректні дані, день не може бути меншим за 0 і більше за 31');
+					if (typeof newValue !== "number") throw new Error('Некоректні дані, день має бути числом');
+					this.#day = newValue;
+				}
+				get Month() {
+					return this.#month;
+				}
+				set Month(newValue) {
+					if (newValue <= 0 || newValue > 12) throw new Error('Некоректні дані, місяць не може бути меншим за 0 і більше за 12');
+					if (typeof newValue !== "number") throw new Error('Некоректні дані, місяць має бути числом');
+					this.#month = newValue;
+				}
+				get Year() {
+					return this.#year;
+				}
+				set Year(newValue) {
+					if (typeof newValue !== "number") throw new Error('Некоректні дані, рік має бути числом');
+					this.#year = newValue;
+				}
+				daysInMonth() {
+					let daysInMonth = 31;
+					switch (this.Month) {
+						case 4:
+						case 6:
+						case 9:
+						case 11:
+							daysInMonth = 30;
+							break;
+						case 2:
+							daysInMonth = 28;
+							if (this.Year % 4 === 0 && this.Year % 100 !== 0 || this.Year % 400 === 0) daysInMonth = 29;
+							break;
+					}
+					return daysInMonth;
+				}
+				addYears(years) {
+					if (years < 0) throw new Error('Некоректні дані, рік не може бути меншим за 0');
+					this.Year += years;
+				}
+				reduceYears(years) {
+					if (years < 0) throw new Error('Некоректні дані, рік не може бути меншим за 0');
+					this.Year -= years;
+				}
+				addMonths(months) {
+					if (months < 0) throw new Error('Некоректні дані, місяць не може бути меншим за 1');
+					let tempMonth = this.Month + months;
+					while (tempMonth > 12) {
+						tempMonth -= 12;
+						this.addYears(1);
+					}
+					this.Month = tempMonth;
+				}
+				reduceMonth(months) {
+					if (months < 0) throw new Error('Некоректні дані, місяць не може бути меншим за 1');
+					let tempMonth = this.Month - months;
+					while (tempMonth <= 0) {
+						this.reduceYears(1);
+						tempMonth += 12
+					}
+					this.Month = tempMonth;
+				}
+				addDays(days) {
+					if (days < 0) throw new Error('Некоректні дані, день не може бути меншим за 1');
+					let tempDay = this.Day + days;
+					while (tempDay > this.daysInMonth()) {
+						tempDay -= this.daysInMonth();
+						this.addMonths(1);
+					}
+					this.Day = tempDay;
+				}
+				reduceDays(days) {
+					if (days < 0) throw new Error('Некоректні дані, день не може бути меншим за 1');
+					let tempDay = this.Day - days;
+					while (tempDay <= 0) {
+						this.reduceMonth(1);
+						tempDay += this.daysInMonth();
+					}
+					this.Day = tempDay;
+				}
+				toString() {
+					if (this.Year < 0) return `${this.Day} <br> ${this.Month} <br> ${Math.abs(this.Year)} до н.е.`;
+					return `${this.Day} <br> ${this.Month} <br> ${this.Year}`;
+				}
+			}
+			let tDate = new TDate(1, 1, 2000);
+			tDate.addYears(23);
+			tDate.reduceYears(2100);
+			tDate.addMonths(30);
+			tDate.reduceMonth(16);
+			tDate.addDays(51);
+			tDate.reduceDays(57);
+			// tDate.reduceDays(1);
+			document.write(tDate);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

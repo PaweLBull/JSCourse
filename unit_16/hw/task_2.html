@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 16 - Task 2</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 2</h4>
+			<p>
+				Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового
+				еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях,
+				та визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в
+				окремому полі.
+			</p>
+		</div>
+		<script>
+			class TMoney {
+				#exchangeRate;
+				#balance;
+				constructor(exchangeRate, balance) {
+					this.ExchangeRate = exchangeRate;
+					this.Balance = balance;
+				}
+				get ExchangeRate() {
+					return this.#exchangeRate;
+				}
+				set ExchangeRate(newRate) {
+					if (newRate < 0) throw new Error("Невірне значення курсу");
+					return this.#exchangeRate = newRate;
+				}
+				get Balance() {
+					return this.#balance * this.ExchangeRate;
+				}
+				set Balance(valueUAH) {
+					if (valueUAH < 0) throw new Error("Невірне значення. Сума не може бути меншою за 0");
+					return this.#balance = valueUAH / this.ExchangeRate;
+				}
+				addBalance(valueUAH) {
+					if (valueUAH < 0) throw new Error("Невірне значення. Сума не може бути меншою за 0");
+					this.Balance += valueUAH;
+				}
+				reduceBalance(valueUAH) {
+					if (valueUAH < 0) throw new Error("Невірне значення. Сума не може бути меншою за 0");
+					if (valueUAH > this.Balance) throw new Error("Сума перевищує залишок коштів на бланасі");
+					this.Balance -= valueUAH;
+				}
+				getNewRate() {
+					return (this.Balance + 100) / this.#balance;
+				}
+				toString() {
+					return `Поточний баланс ${this.Balance / this.ExchangeRate}$ по курсу ${this.ExchangeRate} <br> <br> 
+					Новий курс,при якому сума у гривнях збільшиться на 100: ${this.getNewRate().toFixed(2)}`
+				}
+			}
+			let money = new TMoney(40, 1000);
+			money.addBalance(3500);
+			money.reduceBalance(1350);
+			document.write(money)
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

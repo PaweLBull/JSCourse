@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 16 - Task 3</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 3</h4>
+			<p>
+				Об’єкт “Фірма” (використати члени-класи)<br><br>
+			</p>
+			<table>
+				<tr>
+					<td>Поля</td>
+					<td>назва фірми;<br>
+						дата заснування (рік, місяць);<br>
+						послуги (назва послуги, вартість, термін виконання);<br>
+						адреси філіалів (країна, місто, вулиця, номер будинку);
+					</td>
+				</tr>
+				<tr>
+					<td>Методи</td>
+					<td>визначення кількості років існування фірми;<br>
+						виведення всіх філіалів фірми у вказаному місті;<br>
+						виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін
+						часу;
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script>
+			class Company {
+				constructor(name, foundation, services, branches) {
+					this.name = name;
+					this.foundation = foundation;
+					this.services = services;
+					this.branches = branches;
+				}
+				getCompanyAge(currentYear) {
+					return currentYear - this.foundation.year;
+				}
+				getBranchesInCity(city) {
+					return this.branches.filter((branch) => branch.city === city);
+				}
+				getPossibleService(money, duration) {
+					let result = [];
+					for (const service of this.services) {
+						if (money >= service.cost && duration >= service.termin) {
+							money -= service.cost;
+							result.push(service.service);
+						}
+					}
+					return result;
+				}
+				toString() {
+					return `Фірма ${this.name} заснована в ${this.foundation.month} місяці ${this.foundation.year} року`
+				}
+			}
+			class Services {
+				constructor(services) {
+					Object.assign(this, services);
+				}
+			}
+			class BranchAddresse {
+				constructor(branchAddresses) {
+					Object.assign(this, branchAddresses);
+				}
+			}
+			let services = [
+				new Services({ service: "client support", cost: 1000, termin: 30 }),
+				new Services({ service: "trasportation", cost: 3000, termin: 7 }),
+				new Services({ service: "invoicing", cost: 500, termin: 15 }),
+				new Services({ service: "loading", cost: 2000, termin: 2 })
+			]
+			let branches = [
+				new BranchAddresse({ county: "Poland", city: "Gdansk", street: "Rdestowa", house: 160 }),
+				new BranchAddresse({ county: "Poland", city: "Poznan", street: "Paderewskiego", house: 6 }),
+				new BranchAddresse({ county: "Poland", city: "Poznan", street: "Promenista", house: 43 }),
+				new BranchAddresse({ county: "Germany", city: "Hamburg", street: "Kundestrasse", house: 2 }),
+				new BranchAddresse({ county: "Poland", city: "Warszawa", street: "Solna", house: 77 })
+			]
+			let company = new Company("Visline", { year: 2008, month: 8 }, services, branches);
+			document.write(company + "<br>" + "<br>");
+
+			document.write(`Фірма існує ${company.getCompanyAge(2023)} років <br><br>`);
+			//============
+			let cityBranch = "Poznan";
+			let branchesInCity = company.getBranchesInCity(cityBranch)
+			function getBranchesInCity(branchesInCity, cityBranch) {
+				for (const address of branchesInCity) {
+					document.write(`В місті ${cityBranch} знаходиться філіал за адресою ${address.street}, ${address.house}<br>`);
+				}
+			}
+			getBranchesInCity(branchesInCity, cityBranch);
+			//============
+			let userSum = 4000;
+			let userTerm = 15;
+			document.write(`Послуг, що можуть бути виконані за суму ${userSum} грн та термін ${userTerm} днів: ${company.getPossibleService(4000, 15).join(" + ")}`);
+		</script>
+	</div>
+
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>
