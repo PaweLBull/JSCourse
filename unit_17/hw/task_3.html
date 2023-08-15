@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 17 - Task 3</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 3</h4>
+			<p>
+				Створити клас Нагадувач. Кожні вказані кількості секунд (використати setInterval) програма нагадує
+				про якусь подію (це просто текст) і також виводиться порядковий номер скільки раз вже нагадування
+				було. Зробити так, щоб неможна було зробити одночасно декілька об’єктів-нагадувачів. Методи зупинки
+				таймера, метод зміни повідомлення без зупинки таймера.
+			</p>
+		</div>
+		<script>
+			class Reminder {
+				static remind;
+				#interval;
+				#delay;
+				constructor(text, interval, changeText, delay) {
+					if (Reminder.remind) return Reminder.remind;
+					this.text = text;
+					this.changeText = changeText;
+					this.Interval = interval;
+					this.Delay = delay;
+					this.countText = 0;
+					this.reming = '';
+					Reminder.remind = this;
+				}
+				get Interval() {
+					return this.#interval;
+				}
+				set Interval(value) {
+					if (value <= 0) throw new Error('Заданий інтервал має бути більшим нуля');
+					this.#interval = value;
+				}
+				get Delay() {
+					return this.#delay;
+				}
+				set Delay(value) {
+					if (value <= 0) throw new Error('Задана затримка має бути більшим нуля');
+					if (value < this.Interval) throw new Error('Затримка задана занадто швидко');
+					this.#delay = value;
+				}
+				useRemind() {
+					return this.remind = setInterval(() => {
+						this.countText++;
+						document.write(`${this.countText} - ${this.text} <br>`);
+					}, this.Interval * 1000)
+				}
+				clearRemind() {
+					clearInterval(this.remind);
+				}
+				clearRemindWithUserDelay(userDelay) {
+					setTimeout(() => clearInterval(this.remind), userDelay * 1000);
+				}
+				changeTextWithDelay() {
+					setTimeout(() => this.text = this.changeText, this.Delay * 1000);
+				}
+			}
+
+			let reminder = new Reminder("Hola", 1, "Adios", 4)
+			reminder.useRemind();
+			reminder.changeTextWithDelay();
+			reminder.clearRemindWithUserDelay(9);
+			// або можна зупинити так:
+			// setTimeout(() => reminder.clearRemind(), 9000);
+
+		</script>
+	</div>
+
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

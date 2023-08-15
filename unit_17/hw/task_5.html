@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 17 - Task 5</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 5</h4>
+			<p>
+				Дано два класи MultChecker (клас для перевірки таблиці множення - рандомно генеруються числа, які
+				треба перемножати), AddChecker (клас для перевірки додавання - рандомно генеруються числа у заданому
+				діапазоні, які треба додавати). Обидва класи надсилають результати тестування об'єкту класу Hystory,
+				який зберігає історію тестування у масиві у вигляді об'єктів <br>
+				Приклад.<br><br>
+				testsList= [
+				{firstNum:1, secondNum:5,opration:’*’, userAnswer:7, correctAnswer:5},
+				{firstNum:3, secondNum:4,opration:’+’, userAnswer:7, correctAnswer:7},
+				]<br><br>
+				Можна створити окремий клас TestData, який описує один такий тест і у якому будуть ці поля. <br>
+				Розробити клас TestManager, який використовуючи ці класи за допомогою таймера періодично генерує якісь
+				N задач (рандомно вибираємо, що опитувати: додавання чи множення) і проводить опитування. Результати
+				тестування додаються в об’єкт History. Зробити так, щоб об'єкт такого класу можна було створити тільки
+				один. Коли зроблено ці N задач вивести усю історію на екран.
+			</p>
+		</div>
+		<script>
+			class TestData {
+				constructor(checkDataObj) {
+					Object.assign(this, checkDataObj)
+				}
+				toString() {
+					return `Exercise ${this.firstNum} ${this.operation} ${this.secondNum}.
+					Your answer: ${this.userResult} - correct result ${this.result}`
+				}
+			}
+			class MultChecker {
+				constructor(minNum = 1, maxNum = 9) {
+					this.minNum = minNum;
+					this.maxNum = maxNum;
+				}
+				getRandom(minNum, maxNum) {
+					minNum ??= this.minNum;
+					maxNum ??= this.maxNum;
+					let randomNum = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+					return randomNum;
+				}
+				check() {
+					const firstNum = this.getRandom();
+					const secondNum = this.getRandom();
+					let result = firstNum * secondNum;
+					let userResult = parseInt(prompt(`${firstNum} * ${secondNum} = ...`));
+					if (userResult === result) alert(`Yes, good answer. ${result}`);
+					else alert(`Not correct. The result was ${result}`);
+					return new TestData({
+						firstNum,
+						secondNum,
+						operation: "*",
+						result,
+						userResult
+					})
+				}
+			}
+			class AddChecker {
+				constructor(minNum = 1, maxNum = 9) {
+					this.minNum = minNum;
+					this.maxNum = maxNum;
+				}
+				getRandom(minNum, maxNum) {
+					minNum ??= this.minNum;
+					maxNum ??= this.maxNum;
+					let randomNum = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+					return randomNum;
+				}
+				check() {
+					const firstNum = this.getRandom();
+					const secondNum = this.getRandom();
+					let result = firstNum + secondNum;
+					let userResult = parseInt(prompt(`${firstNum} + ${secondNum} = ...`));
+					if (userResult === result) alert(`Yes, good answer. ${result}`);
+					else alert(`Not correct. The result was ${result}`);
+					return new TestData({
+						firstNum,
+						secondNum,
+						operation: "+",
+						result,
+						userResult
+					})
+				}
+			}
+			class History {
+				constructor() {
+					this.testList = [];
+				}
+				addNewTest(testObj) {
+					this.testList.push(new TestData(testObj));
+				}
+				showTestList() {
+					this.testList.forEach((test) => document.write(`${test}<br><br>`));
+				}
+			}
+			class TestManager {
+				static createTest;
+				constructor(testsCountSum, testsInterval, minNum, maxNum) {
+					if (TestManager.createTest) return TestManager.createTest;
+					this.testsCountSum = testsCountSum;
+					this.testsInterval = testsInterval * 1000;
+					this.testsCountDone = 0;
+					this.multChecker = new MultChecker();
+					this.addChecker = new AddChecker(minNum, maxNum);
+					this.history = new History();
+					TestManager.createTest = this;
+				}
+				doTest() {
+					let testResult;
+					if (Math.random() > 0.5) testResult = this.multChecker.check();
+					else testResult = this.addChecker.check();
+					this.history.addNewTest(testResult);
+					this.testsCountDone++;
+					if (this.testsCountDone < this.testsCountSum)
+						setTimeout(() => this.doTest(), this.testsInterval);
+					else this.history.showTestList();
+				}
+				run() {
+					this.doTest();
+				}
+			}
+			let testManager = new TestManager(5, 2, 2, 20);
+			testManager.run();
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>

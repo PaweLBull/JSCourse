@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 17 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>
+				Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий
+				опис), назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати
+				розділи бібліотеки, організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за
+				видавництвом.
+			</p>
+		</div>
+		<script>
+			class Library {
+				constructor(bookList) {
+					this.bookList = bookList;
+				}
+				chooseGenre(genre) {
+					return this.bookList.filter((book) => book.genre === genre)
+				}
+				addBook(additionalBook) {
+					this.bookList.push(additionalBook);
+				}
+				removeBook(removedBookTitle) {
+					this.bookList = this.bookList.filter((book) => book.title !== removedBookTitle);
+				}
+				chooseBookByTitle(chooseBook) {
+					// const err = new Error('no such book!');
+					// return this.bookList.reduce((prevVal, book) => book.title == chooseBook ? book : prevVal, err);
+					return this.bookList.find((book) => book.title === chooseBook);
+				}
+				chooseBooksByAuthor(authorName, authorSurname) {
+					return this.bookList.filter((book) => book.author.name === authorName && book.author.surname === authorSurname);
+				}
+				chooseBooksByPublisher(editionName) {
+					return this.bookList.filter((book) => book.publisher.editionName === editionName);
+				}
+				toString() {
+					let res = '';
+					for (const book of this.bookList) {
+						res += `Author: ${book.author.name} ${book.author.surname} - book: ${book.title} <br>`;
+					}
+					return res;
+				}
+			}
+			class Book {
+				constructor(booksData) {
+					this.author = new Authors(booksData);
+					this.title = booksData.title;
+					this.genre = booksData.genre;
+					this.publisher = new Publisher(booksData);
+
+				}
+			}
+			class Authors {
+				constructor({ name, surname, notes }) {
+					this.name = name;
+					this.surname = surname;
+					this.notes = notes;
+				}
+			}
+			class Publisher {
+				constructor({ editionName, registraionNumber, foundationYear }) {
+					this.editionName = editionName;
+					this.registraionNumber = registraionNumber;
+					this.foundationYear = foundationYear;
+				}
+			}
+			let bookList = [
+				new Book({
+					name: "Robert",
+					surname: "Levandovski",
+					notes: "Polish football player",
+					title: "How to change Bayern to Barca",
+					genre: "Fantastic",
+					editionName: "Sky news",
+					registraionNumber: "1231ADS632",
+					foundationYear: 1977
+				}),
+				new Book({
+					name: "Lionel",
+					surname: "Messi",
+					notes: "Argentine football player",
+					title: "How become a GOAT",
+					genre: "Real story",
+					editionName: "Marca",
+					registraionNumber: "52POS12220",
+					foundationYear: 1950
+				}),
+				new Book({
+					name: "Kylian",
+					surname: "Mbappe",
+					notes: "French football player",
+					title: "Bad choice or how to loose one year",
+					genre: "Tragic",
+					editionName: "France football",
+					registraionNumber: "7221903OK",
+					foundationYear: 1984
+				}),
+				new Book({
+					name: "Cristiano",
+					surname: "Ronaldo",
+					notes: "Portugal football player",
+					title: "He thinks that everyone follow him to Saudi Arabia. No! :)",
+					genre: "Comedy",
+					editionName: "El mundo deportivo",
+					registraionNumber: "854433GTU",
+					foundationYear: 1985
+				}),
+				new Book({
+					name: "Harry",
+					surname: "Maguire",
+					notes: "English football player",
+					title: "It's not funny!",
+					genre: "Horror",
+					editionName: "Independent",
+					registraionNumber: "93981421INM",
+					foundationYear: 1975
+				}),
+				new Book({
+					name: "Jordi",
+					surname: "Alba",
+					notes: "Spanish football player",
+					title: "Nice to meet you again, Leo!",
+					genre: "Melodrama",
+					editionName: "Fabricio Romano",
+					registraionNumber: "7HERE7WE7GO",
+					foundationYear: 2000
+				}),
+			]
+
+			let library = new Library(bookList);
+			document.write(library)
+			// document.write(JSON.stringify(library.chooseGenre('Comedy')));
+			console.log(library.chooseGenre('Real story'));
+			let additionalBook = new Book({
+				name: "Harry",
+				surname: "Maguire",
+				notes: "Englise football player",
+				title: "Stop laughing, it's not funny really",
+				genre: "Real story",
+				editionName: "Fabricio Romano",
+				registraionNumber: "7HERE7WE7GO",
+				foundationYear: 2000
+			});
+			library.addBook(additionalBook);
+			library.removeBook("Bad choice or how to loose one year");
+			console.log(library);
+			console.log(library.chooseBookByTitle('How become a GOAT'));
+			console.log(library.chooseBooksByAuthor("Harry", "Maguire"));
+			console.log(library.chooseBooksByPublisher("Fabricio Romano"));
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+</style>
+
+</html>
