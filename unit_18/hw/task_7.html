@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 18 - Task 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 7</h4>
+			<p>
+				Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту
+				(авто, автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з
+				3-х гідів(використати - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+			</p>
+		</div>
+		<form method="dialog">
+			<div class="tour">
+				<h2>TOUR 1</h2>
+				<div class="input">
+					<label for="sel1">Transport</label>
+					<select class="sel" id="sel1">
+						<option value="200">Auto</option>
+						<option value="150">Bus</option>
+						<option value="400">Plane</option>
+					</select>
+				</div>
+				<div class="input">
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp1" value="40">
+						<label for="inp1">breakfast</label>
+					</div>
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp2" value="80">
+						<label for="inp2">lunch</label>
+					</div>
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp3" value="60">
+						<label for="inp3">dinner</label>
+					</div>
+				</div>
+				<div class="input">
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad1" value="140" name="rad1">
+						<label for="rad1">Lionel MESSI</label>
+					</div>
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad2" value="100" name="rad1">
+						<label for="rad2">Luis SUARES</label>
+					</div>
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad3" value="120" name="rad1">
+						<label for="rad3">NEYMAR</label>
+					</div>
+				</div>
+			</div>
+			<div class="tour">
+				<h2>TOUR 1</h2>
+				<div class="input">
+					<label for="sel2">Transport</label>
+					<select class="sel" id="sel2">
+						<option value="140">Auto</option>
+						<option value="120">Bus</option>
+						<option value="380">Plane</option>
+					</select>
+				</div>
+				<div class="input">
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp4" value="20">
+						<label for="inp4">breakfast</label>
+					</div>
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp5" value="50">
+						<label for="inp5">lunch</label>
+					</div>
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp6" value="50">
+						<label for="inp6">dinner</label>
+					</div>
+				</div>
+				<div class="input">
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad4" value="120" name="rad2">
+						<label for="rad4">Cristiano RONALDO</label>
+					</div>
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad5" value="70" name="rad2">
+						<label for="rad5">Karim BENZEMA</label>
+					</div>
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad6" value="80" name="rad2">
+						<label for="rad6">Gareth BALE</label>
+					</div>
+				</div>
+			</div>
+			<div class="tour">
+				<h2>TOUR 1</h2>
+				<div class="input">
+					<label for="sel3">Transport</label>
+					<select class="sel" id="sel3">
+						<option value="250">Auto</option>
+						<option value="380">Bus</option>
+						<option value="670">Plane</option>
+					</select>
+				</div>
+				<div class="input">
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp7" value="70">
+						<label for="inp7">breakfast</label>
+					</div>
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp8" value="120">
+						<label for="inp8">lunch</label>
+					</div>
+					<div class="check-el">
+						<input class="check" type="checkbox" id="inp9" value="130">
+						<label for="inp9">dinner</label>
+					</div>
+				</div>
+				<div class="input">
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad7" value="130" name="rad3">
+						<label for="rad7">Sergio AGUERO</label>
+					</div>
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad8" value="110" name="rad3">
+						<label for="rad8">Riad MAHREZ</label>
+					</div>
+					<div class="radio-el">
+						<input class="radio" type="radio" id="rad9" value="135" name="rad3">
+						<label for="rad9">Kevin DE BRUYNE</label>
+					</div>
+				</div>
+			</div>
+		</form>
+		<button class="sum-btn">GET SUM</button>
+		<div class="result"></div>
+		<script>
+			function getSum() {
+				let sum = 0;
+				const select = document.querySelectorAll('.sel');
+				for (const el of select)
+					sum += parseInt(el.value);
+
+				const check = document.querySelectorAll('.check');
+				for (const el of check)
+					if (el.checked) sum += parseInt(el.value);
+
+				const radio = document.querySelectorAll('.radio');
+				for (const el of radio)
+					if (el.checked) sum += parseInt(el.value);
+
+				document.querySelector('.result').innerHTML = `Ціна: ${sum}`;
+			}
+			window.onload = () =>
+				document.querySelector('.sum-btn').onclick = getSum;
+
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	/* table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	} */
+
+	form {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.tour {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 30px;
+		border: 1px dashed orange;
+	}
+
+	.input {
+		display: inline-flex;
+		padding: 10px;
+		gap: 40px;
+		border: 2px solid red;
+	}
+
+	.sel {
+		width: 200px;
+	}
+
+	button {
+		display: block;
+		width: 100px;
+		padding: 5px;
+		margin: 30px auto;
+		text-align: center;
+		border-radius: 10px;
+		background-color: #fff531;
+		cursor: progress;
+	}
+
+	.radio-el {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.result {
+		text-align: center;
+	}
+</style>
+
+</html>

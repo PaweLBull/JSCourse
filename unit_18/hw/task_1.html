@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 18 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>
+				Розробити калькулятор. <br><br>
+			</p>
+		</div>
+		<form method="dialog">
+			<div class="input">
+				<label for="inp1">First Number</label>
+				<input type="number" id="inp1" name="inp1" placeholder="0" class="inp" value="">
+			</div>
+			<div class="input">
+				<label for="inp2">Second Number</label>
+				<input type="number" id="inp2" name="inp2" placeholder="0" class="inp" value="">
+			</div>
+			<div class="btns">
+				<button class="btn-minus">Відняти</button>
+				<button class="btn-plus">Додати</button>
+				<button class="btn-mult">Помножити</button>
+				<button class="btn-divide">Поділити</button>
+			</div>
+			<div class="input input-last">
+				<label for="inp3">РЕЗУЛЬТАТ</label>
+				<input type="text" id="inp3" name="inp3" placeholder="0" class="inp" value="">
+			</div>
+		</form>
+	</div>
+	<script>
+		"use strict"
+		function test(action) {
+			let firstNum = parseFloat(document.querySelector('#inp1').value);
+			let secondNum = parseFloat(document.querySelector('#inp2').value);
+			let resultNum = document.querySelector('#inp3');
+			let res = '';
+			switch (action) {
+				case "-":
+					res = firstNum - secondNum;
+					break;
+				case "+":
+					res = firstNum + secondNum;
+					break;
+				case "*":
+					res = firstNum * secondNum;
+					break;
+				case "/":
+					res = firstNum / secondNum;
+					break;
+			}
+			resultNum.value = res;
+		}
+		window.onload = () => {
+			document.querySelector('.btn-plus').onclick = () => test("+");
+			document.querySelector('.btn-minus').onclick = () => test("-");
+			document.querySelector('.btn-mult').onclick = () => test("*");
+			document.querySelector('.btn-divide').onclick = () => test("/");
+		}
+
+
+	</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.input-last {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top: 4px solid black;
+	}
+
+	.input {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.inp {
+		padding: 3px 5px;
+		width: 300px;
+		font-size: 17px;
+		border-radius: 10px;
+	}
+
+	.btns {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		padding: 15px 0;
+	}
+
+	button {
+		padding: 10px;
+		width: 130px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+</style>
+
+</html>
