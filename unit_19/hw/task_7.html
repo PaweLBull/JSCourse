@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 19 - Task 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 7</h4>
+			<p>
+				Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану (top =0) і з випадковою
+				швидкістю рухається вниз (у setInterval викликати метод, у якому додавати крок до top). Як тільки
+				сніжинка досягає нижньої частини екрану (top>maxTop) вона знову повинна з’явитись у верхній частині
+				екрану (top=0).
+			</p>
+		</div>
+		<div class="container"></div>
+		<script>
+			class Snowfall {
+				constructor(snowNum) {
+					this.snowNum = snowNum;
+				}
+				falling() {
+					for (const element of this.snow.children) {
+						let snowflakeTop = 0;
+						setInterval(() => {
+							snowflakeTop += 0.1;
+							element.style.top = snowflakeTop + "%";
+							if (snowflakeTop >= 100) snowflakeTop = 0;
+						}, this.randomValue(10, 40));
+					}
+				}
+				randomValue(minNum, maxNum) {
+					return minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+				}
+				render(containerSel, minSize, maxSize, minPosition = 0, maxPosition = 100) {
+					this.snow = document.createElement('div');
+					for (let i = 0; i < this.snowNum; i++) {
+						let snowflake = document.createElement('img');
+						snowflake.setAttribute('src', '../hw/7.png');
+						let randomSize = this.randomValue(minSize, maxSize)
+						snowflake.style.width = randomSize + 'px';
+						snowflake.style.height = randomSize + 'px';
+						snowflake.style.position = 'absolute';
+						snowflake.style.top = "0";
+						snowflake.style.left = this.randomValue(minPosition, maxPosition) + '%';
+						this.snow.append(snowflake);
+					}
+					if (containerSel) document.querySelector(containerSel).append(this.snow);
+					this.falling();
+				}
+			}
+			window.onload = () => {
+				let snowfall = new Snowfall(100);
+				snowfall.render('.container', 30, 70);
+			}
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	/* table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		text-align: center;
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	} */
+</style>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 19 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>
+				Дано 3 таблиці розмірності 3*3 з випадковими числами. Якщо відбувається клік на якійсь із клітинок, то
+				до відповідної таблиці додається червона рамка (спробуйте додати можливість відображення кількості
+				кліків біля назви таблиці з використанням відповідно доданого для цього атрибута).
+			</p>
+		</div>
+		<div class="container"></div>
+		<script>
+			class Table {
+				constructor(title) {
+					this.title = title;
+				}
+				showBorder(e) {
+					console.log(e);
+					let targetTd = e.target.closest('table');
+					targetTd.style.border = "3px solid red";
+					let title = targetTd.previousElementSibling;
+					let titleCount = title.getAttribute('click')
+					titleCount++;
+					console.log(titleCount);
+					console.log(title);
+					title.setAttribute('click', titleCount);
+					title.innerText = `${this.title} click = ${titleCount}`;
+				}
+				randomNum(minNum, maxNum) {
+					return minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+				}
+				render(containerSelector, tableNum, rowNum = 3, cellNum = 3) {
+					for (let tabNum = 0; tabNum < tableNum; tabNum++) {
+						const tableBlock = document.createElement('div');
+						const table = document.createElement('table');
+						const tableTitle = document.createElement('h2');
+						tableTitle.setAttribute('click', "0");
+						let titleCount = tableTitle.getAttribute('click');
+						tableTitle.innerText = this.title;
+						for (let trNum = 0; trNum < rowNum; trNum++) {
+							let tr = document.createElement('tr');
+							for (let tdNum = 0; tdNum < cellNum; tdNum++) {
+								this.td = document.createElement('td');
+								this.td.innerText = this.randomNum(1, 100);
+								tr.append(this.td);
+								this.td.onclick = this.showBorder.bind(this);
+							}
+							table.append(tr);
+						}
+						tableBlock.append(tableTitle);
+						tableBlock.append(table);
+						if (containerSelector) document.querySelector(containerSelector).append(tableBlock);
+					}
+				}
+			}
+			window.onload = () => {
+				let table = new Table('Table')
+				table.render('.container', 3);
+			}
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(0, 60, 255);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(237, 249, 13);
+		width: 60px;
+		height: 60px;
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	h2 {
+		font-size: 30px;
+		margin-right: 50px;
+	}
+
+	.container {
+		display: flex;
+		text-align: center;
+		flex-wrap: wrap;
+	}
+</style>
+
+</html>

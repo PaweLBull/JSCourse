@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 19 - Task 5</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 5</h4>
+			<p>
+				Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку (при кліку
+				робити toogle з класом вибраного елемента)<br>
+			</p>
+			<img src="5.png" alt="5">
+		</div>
+		<div class="container"> </div>
+		<script>
+			let baners = [
+				{
+					src: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRIq4s1mJO6RRlMupHG_nSjHRK1TsUvPYA0ybcyj5BRPBslHCNRw2RUke6iSJ2szL_W5CWRZNyMTGE7tvIFQS7wI8q38F_NbAetNK-bBa93FcH13AVC2DXiag&usqp=CAE",
+					title: "Roy Robson"
+				},
+				{
+					src: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSAT-K9XRYHtm6uaQdGBKEr-0m2SbmPPOZqM7oN_w4nOwoOSqIgcI2gs0IW8vctgK0V8QluR7cYoRERb1dUY7m2hVEoI9-ly-rxjKs5JUY4&usqp=CAE",
+					title: "Pierre Cardin"
+				},
+				{
+					src: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTxa5Tezm5UBlTrSojqDTY1aFHqJ61ljpOJw4s9pJm0mnY0W3Qc2YkYaWPLeL9cC9z46PMEcSDY-_1-o9kGv2QonIgJe_yy3lOBjQ_RGTM&usqp=CAE",
+					title: "Czarna marynarka"
+				},
+				{
+					src: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSRwos19JR6qp5plDqugtQdTnPYvczq6mawVO8fGj2SDcZM8L8GPYz9A7RSFlZ0zzVROvizRYDtb09VJLzONoCEr1y-THzQqg&usqp=CAY",
+					title: "Next Marynarka"
+				},
+				{
+					src: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT3DsFpDO_vgUBsN5tkcd4JEO7eEiJbBGup9TNR_LhAptwtMNIs3A1v8_BkBGWgVdJAgNsu6Wututs3V6eHMXkDD2KCtEfveGL2ixKKjM9Kfxi-wME0W7uDlhE&usqp=CAE",
+					title: "Strellson"
+				},
+
+			]
+
+			class Baner {
+				constructor({ src, title }) {
+					this.src = src;
+					this.title = title;
+				}
+				highlightBaner() {
+					this.baner.classList.toggle('border')
+				}
+				render(containerSelector) {
+					this.baner = document.createElement('div');
+					this.baner.className = "baner";
+
+					const picture = document.createElement('div');
+					picture.className = "img-wrapper";
+					this.baner.append(picture);
+
+					const img = document.createElement('img');
+					img.setAttribute('src', this.src);
+					picture.append(img);
+
+					const banerTitle = document.createElement('h5');
+					banerTitle.innerHTML = this.title;
+					this.baner.append(banerTitle);
+					this.baner.addEventListener('click', this.highlightBaner.bind(this));
+					if (containerSelector) document.querySelector(containerSelector).append(this.baner);
+				}
+			}
+			window.onload = () => {
+				for (const el of baners) {
+					let baner = new Baner(el);
+					baner.render('.container');
+				}
+			}
+
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.container {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+	}
+
+	.baner {
+		flex: 0 0 200px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.img-wrapper img {
+		max-width: 150px;
+		height: 150px;
+	}
+
+	h5 {
+		font-size: 16px;
+	}
+
+	.border {
+		outline: 3px solid green;
+	}
+</style>
+
+</html>
