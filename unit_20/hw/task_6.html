@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 20 - Task 6</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 6</h4>
+			<p>
+				Дано список автомобілів (марка, рік випуску, ціна). Сформувати елементи для фільтрування з використанням
+				випадаючого списку (контент цих випадаючих списків сформувати у залежності від переданого списку).
+			</p>
+			<img src="6.png" alt="6">
+		</div>
+		<div class="container"></div>
+		<script>
+			let auto = [
+				{
+					brand: "Audi",
+					year: "2020",
+					price: "35000$"
+				},
+				{
+					brand: "BMW",
+					year: "2018",
+					price: "30000$"
+				},
+				{
+					brand: "Audi",
+					year: "2017",
+					price: "26000$"
+				},
+				{
+					brand: "Chevrolet",
+					year: "2021",
+					price: "40000$"
+				},
+				{
+					brand: "Skoda",
+					year: "2020",
+					price: "33000$"
+				},
+				{
+					brand: "Opel",
+					year: "2005",
+					price: "4000$"
+				},
+				{
+					brand: "Mazda",
+					year: "2017",
+					price: "14000$"
+				},
+			]
+
+			class CarSelects {
+				constructor(auto, containerSel) {
+					this.auto = auto;
+					this.containerSel = containerSel;
+				}
+				choseAuto() {
+					let searchAuto = new CustomEvent('searchAuto', {
+						detail: {
+							brand: this.sel1.value,
+							year: this.sel2.value,
+						}
+					})
+					console.log(this.sel1.value);
+					console.log(this.sel2.value);
+					document.querySelector(this.containerSel).dispatchEvent(searchAuto);
+				}
+				renderBrand(containerSel) {
+					let div = document.createElement('div');
+					div.className = 'select-block';
+					let label = document.createElement('label');
+					label.setAttribute('for', 'sel1');
+					label.innerText = 'Brand';
+					div.append(label)
+					let sel = document.createElement('select');
+					sel.setAttribute('id', 'sel1');
+					let newArr = [];
+					for (const el of this.auto) {
+						newArr.push(el.brand);
+					}
+					const autoArrayUniq = new Set(newArr.sort());
+					autoArrayUniq.forEach((el) => {
+						let opt = document.createElement('option');
+						opt.value = el;
+						opt.innerText = el;
+						sel.append(opt);
+					})
+					this.sel1 = sel;
+					div.append(this.sel1);
+					div.addEventListener('change', this.choseAuto.bind(this));
+					if (this.containerSel) document.querySelector(this.containerSel).append(div);
+				}
+				renderYear(containerSel) {
+					let div = document.createElement('div');
+					div.className = 'select-block';
+					let label = document.createElement('label');
+					label.innerText = 'Year';
+					label.setAttribute('for', 'sel2');
+					div.append(label);
+					let sel = document.createElement('select');
+					sel.setAttribute('id', 'sel2');
+					let newArr = [];
+					for (const el of this.auto) {
+						newArr.push(el.year);
+					}
+					const autoArrayUniq = new Set(newArr.sort());
+					autoArrayUniq.forEach((el) => {
+						let opt = document.createElement('option');
+						opt.value = el;
+						opt.innerText = el;
+						sel.append(opt);
+					})
+					this.sel2 = sel;
+					div.append(this.sel2);
+					div.addEventListener('change', this.choseAuto.bind(this));
+					if (this.containerSel) document.querySelector(this.containerSel).append(div);
+				}
+			}
+
+
+			let carSelects = new CarSelects(auto, '.container');
+			carSelects.renderBrand();
+			carSelects.renderYear();
+
+
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.select-block {
+		min-width: 300px;
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	select {
+		min-width: 150px;
+		padding: 5px;
+		border-radius: 5px;
+	}
+
+	.container {
+		padding-bottom: 30px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+	}
+</style>
+
+</html>

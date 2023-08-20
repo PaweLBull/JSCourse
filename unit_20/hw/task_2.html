@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 20 - Task 2</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 2</h4>
+			<p>
+				Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки, які їдуть
+				вниз. При кліку на танк він вибухає і зникає з екрану.
+			</p>
+		</div>
+		<div class="container"></div>
+		<script>
+			class Bayraktar {
+				constructor(bayraktarCount, containerSel, minLeft, minTop) {
+					this.bayraktarCount = bayraktarCount;
+					this.containerSel = containerSel;
+					this.minLeft = minLeft;
+					this.minTop = minTop;
+					this.click = 0;
+				}
+				explose(e) {
+					let targetBomb = e.target;
+					this.click += 1;
+					targetBomb.setAttribute('src', '../hw/2-1.png');
+					setTimeout(() => {
+						targetBomb.remove();
+					}, 100);
+					if (this.click === this.bayraktarCount) {
+						this.render();
+						this.click = 0;
+					}
+				}
+				falling(minValue, maxValue) {
+					for (const element of this.bayraktars.children) {
+						let positionTop = 0;
+						setInterval(() => {
+							positionTop += 0.1;
+							element.style.top = positionTop + "%";
+							if (positionTop > 100) positionTop = 0;
+						}, this.randomValue(minValue, maxValue));
+					}
+				}
+				randomValue(minNum, maxNum) {
+					return minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+				}
+				render() {
+					this.bayraktars = document.createElement('div');
+					for (let element = 0; element < this.bayraktarCount; element++) {
+						let bayraktar = document.createElement('img');
+						bayraktar.setAttribute('src', '../hw/2.svg');
+						bayraktar.style.transform = "rotate(180deg)";
+						bayraktar.style.width = "50px";
+						bayraktar.style.position = 'absolute';
+						bayraktar.style.top = 0;
+						bayraktar.style.left = this.randomValue(this.minLeft, this.minTop) + '%';
+						bayraktar.addEventListener('click', this.explose.bind(this));
+						this.bayraktars.append(bayraktar);
+					}
+					if (this.containerSel) document.querySelector(this.containerSel).append(this.bayraktars);
+					this.falling(1, 10)
+				}
+			}
+			window.onload = () => {
+				let bayraktar = new Bayraktar(10, '.container', 5, 95);
+				bayraktar.render();
+			}
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.input {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.inp {
+		padding: 3px 10px;
+		width: 300px;
+		font-size: 25px;
+		border-radius: 10px;
+	}
+</style>
+
+</html>

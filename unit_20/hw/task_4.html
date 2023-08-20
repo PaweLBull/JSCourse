@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 20 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>
+				На сторінці міститься певна кількість кнопок і інпутів. Підраховувати загальну кількість кліків окремо
+				на кнопках і окремо на інпутах.
+			</p>
+		</div>
+		<div class="container"></div>
+		<script>
+			class ClickCount {
+				constructor(numInputs, numButtons) {
+					this.numInputs = numInputs;
+					this.numButtons = numButtons;
+					this.butClick = 0;
+					this.inpClick = 0;
+				}
+				countClicks(e) {
+					let targetElement = e.target;
+					if (targetElement.tagName == "INPUT") {
+						this.inpClick++;
+						this.clickInp.innerText = `clicks on inputs: ${this.inpClick}`;
+					}
+					if (targetElement.tagName == "BUTTON") {
+						this.butClick++;
+						this.clickBut.innerText = `clicks on buttons: ${this.butClick}`;
+					}
+				}
+				render(containerSel) {
+					const allInputs = document.createElement('div');
+					allInputs.className = 'inputs';
+					for (let inp = 0; inp < this.numInputs; inp++) {
+						const input = document.createElement('input');
+						input.value = "I am an INPUT";
+						allInputs.append(input);
+					}
+					const allButtons = document.createElement('div');
+					allButtons.className = 'buttons';
+					for (let but = 0; but < this.numButtons; but++) {
+						const button = document.createElement('button');
+						button.innerHTML = 'I am a BUTTON';
+						allButtons.append(button);
+					}
+
+					const result = document.createElement('div');
+					result.className = 'result';
+					this.clickInp = document.createElement('div');
+					this.clickInp.innerText = "clicks on inputs: ";
+					this.clickBut = document.createElement('div');
+					this.clickBut.innerText = "clicks on buttons: ";
+
+					result.append(this.clickInp);
+					result.append(this.clickBut);
+
+					if (containerSel) {
+						let container = document.querySelector(containerSel);
+						container.append(allInputs);
+						container.append(allButtons);
+						container.append(result);
+						container.addEventListener('click', this.countClicks.bind(this));
+					}
+				}
+
+
+			}
+			window.onload = () => {
+				let clickCount = new ClickCount(5, 3);
+				clickCount.render('.container');
+			}
+
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(0, 60, 255);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(237, 249, 13);
+		width: 60px;
+		height: 60px;
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	h2 {
+		font-size: 30px;
+		margin-right: 50px;
+	}
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+	}
+
+	.inputs,
+	.buttons,
+	.result {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+	}
+
+	input {
+		width: 300px;
+		border-radius: 5px;
+		padding: 5px;
+	}
+
+	button {
+		padding: 5px 10px;
+		font-size: 20px;
+		border-radius: 5px;
+		background-color: #fff531;
+	}
+
+	.result div {
+		padding: 20px;
+		min-width: 300px;
+		outline: 2px solid red;
+	}
+</style>
+
+</html>

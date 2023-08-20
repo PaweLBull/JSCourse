@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 20 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>
+				Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. Кожна зірка (це
+				екземпляр класу Star) з певним кроком і інтервалом збільшується від мінімального до максимального
+				розміру. Як тільки досягнути максимального розміру зірочка повинна з’являтися у іншій випадковій
+				позиції.
+			</p>
+		</div>
+	</div>
+	<div class="container"></div>
+	<script>
+		class Star {
+			flash(minValue, maxValue) {
+				let starSize = parseInt(this.star.style.width);
+				setInterval(() => {
+					starSize += 1;
+					this.star.style.width = starSize + "px";
+					this.star.style.height = starSize + "px";
+					if (starSize > 300) {
+						starSize = 20;
+						this.star.style.top = this.randomValue(minValue, maxValue) + '%'
+						this.star.style.left = this.randomValue(minValue, maxValue) + '%';
+					}
+				}, this.randomValue(minValue, maxValue));
+			}
+			randomValue(minNum, maxNum) {
+				return minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+			}
+			render(containerSel, minPosition = 0, maxPosition = 100) {
+				this.star = document.createElement('img');
+				this.star.setAttribute('src', '../hw/1.png');
+				this.star.style.width = '20px';
+				this.star.style.height = '20px';
+				this.star.style.position = 'absolute';
+				this.star.style.top = this.randomValue(minPosition, maxPosition) + '%';
+				this.star.style.left = this.randomValue(minPosition, maxPosition) + '%';
+				if (containerSel) document.querySelector(containerSel).append(this.star);
+				this.flash(10, 90);
+			}
+		}
+		window.onload = () => {
+			for (let stars = 0; stars < 5; stars++) {
+				let star = new Star();
+				star.render('.container', 30, 70);
+			}
+		}
+	</script>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.input-last {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top: 4px solid black;
+	}
+
+	.input {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.inp {
+		padding: 3px 5px;
+		width: 300px;
+		font-size: 17px;
+		border-radius: 10px;
+	}
+
+	.btns {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		padding: 15px 0;
+	}
+
+	button {
+		padding: 10px;
+		width: 130px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+
+	.hello {
+		cursor: pointer;
+	}
+</style>
+
+</html>
