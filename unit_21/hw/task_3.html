@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 21 - Task 3</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 3</h4>
+			<p>
+				Розробити Класи
+			</p>
+			<table>
+				<tr>
+					<td>House</td>
+					<td>Dog</td>
+					<td>Bird</td>
+				</tr>
+				<tr>
+					<td> --- властивості --- <br>
+						<ul>
+							<li>Координата Х</li>
+							<li>Координата У</li>
+							<li>шлях до зображення</li>
+							<li>інтервал оновлення</li>
+						</ul>
+						--- методи --- <br>
+						<ul>
+							<li>генерування елемента розмітки</li>
+							<li>оновлення через вказаний інтервал (збільшення або зменшення масштабу (об’єкт не
+								рухається))</li>
+						</ul>
+					</td>
+					<td> --- властивості --- <br>
+						<ul>
+							<li>Координата Х</li>
+							<li>Координата У</li>
+							<li>шлях до зображення</li>
+							<li>інтервал оновлення</li>
+						</ul>
+						--- методи --- <br>
+						<ul>
+							<li>генерування елемента розмітки</li>
+							<li>оновлення через вказаний інтервал (випадкове зміщення по горизонталі (зміна координати
+								Х))</li>
+						</ul>
+					</td>
+					<td> --- властивості --- <br>
+						<ul>
+							<li>Координата Х</li>
+							<li>Координата У</li>
+							<li>шлях до зображення</li>
+							<li>інтервал оновлення</li>
+						</ul>
+						--- методи --- <br>
+						<ul>
+							<li>генерування елемента розмітки</li>
+							<li>оновлення через вказаний інтервал (випадкове переміщення у довільному напрямку)</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+			<p>Подумайте яким має бути спільний клас предок.</p>
+		</div>
+		<div class="container"></div>
+		<script>
+			class AnimationImage {
+				#interval;
+				constructor(coordinateX, coordinateY, imgSrc, interval) {
+					this.coordinateX = coordinateX;
+					this.coordinateY = coordinateY;
+					this.imgSrc = imgSrc;
+					this.Interval = interval;
+				}
+				get Interval() {
+					return this.#interval;
+				}
+				set Interval(value) {
+					if (value <= 0) throw new Error('Not correct Interval');
+					return this.#interval = value;
+				}
+				changeObjWithInterval(minNum, maxNum) {
+					setInterval(() => {
+						this.changeObjStyle(minNum, maxNum);
+					}, this.Interval);
+				}
+				changeObjStyle() { }
+				randomNum(minNum, maxNum) {
+					return minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+				}
+				render(containerSel, minNum, maxNum) {
+					let img = document.createElement('img');
+					img.setAttribute('src', this.imgSrc);
+					img.style.position = "absolute";
+					img.style.bottom = this.coordinateY + "%";
+					img.style.left = this.coordinateX + "%";
+					img.style.width = "100px";
+					this.img = img;
+					if (containerSel) document.querySelector(containerSel).append(this.img);
+					this.changeObjWithInterval(minNum, maxNum);
+				}
+			}
+			class House extends AnimationImage {
+				constructor(coordinateX, coordinateY, imgSrc, interval) {
+					super(coordinateX, coordinateY, imgSrc, interval)
+				}
+				changeObjStyle(minNum = 50, maxNum = 300) {
+					this.img.style.width = this.randomNum(minNum, maxNum) + "px";
+				}
+			}
+			class Dog extends AnimationImage {
+				constructor(coordinateX, coordinateY, imgSrc, interval) {
+					super(coordinateX, coordinateY, imgSrc, interval)
+				}
+				changeObjStyle(minNum = 1, maxNum = 100) {
+					this.img.style.left = this.randomNum(minNum, maxNum) + "%";
+				}
+			}
+			class Bird extends AnimationImage {
+				constructor(coordinateX, coordinateY, imgSrc, interval) {
+					super(coordinateX, coordinateY, imgSrc, interval)
+				}
+				changeObjStyle(minNum = 1, maxNum = 100) {
+					this.img.style.bottom = this.randomNum(minNum, maxNum) + "%";
+					this.img.style.left = this.randomNum(minNum, maxNum) + "%";
+				}
+			}
+			window.onload = () => {
+				let house = new House(40, 30, '../hw/3-1.svg', 1000);
+				house.render('.container');
+				let dog = new Dog(20, 25, '../hw/3-2.svg', 500);
+				dog.render('.container');
+				let bird = new Bird(50, 80, '../hw/3-3.svg', 700);
+				bird.render('.container');
+			}
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	form {
+		display: grid;
+		grid-template-columns: repeat(2, 300px);
+		gap: 20px;
+	}
+
+	input {
+		max-width: 300px;
+		padding: 5px;
+		border-radius: 5px;
+	}
+
+	.container {
+		position: relative;
+		height: 100vh;
+	}
+</style>
+
+</html>

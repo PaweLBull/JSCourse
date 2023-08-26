@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 21 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 1</h4>
+			<p>
+				Створити клас Client <br>
+			</p>
+			<table>
+				<tr>
+					<td>Властивості</td>
+					<td> ID <br> ПІБ <br>Кількість грошей на рахунку
+					</td>
+				</tr>
+				<tr>
+					<td>Методи</td>
+					<td> Додавання грошей<br> Зняття грошей<br>ToString
+					</td>
+				</tr>
+			</table>
+			<p>На основі цього класу створити клас GoldenClient <br> </p>
+			<table>
+				<tr>
+					<td>Властивості</td>
+					<td> ID <br> ПІБ <br>Кількість грошей на рахунку <br>Ліміт кредитних коштів <br>Відсоток за
+						використання кредитних коштів
+					</td>
+				</tr>
+				<tr>
+					<td>Методи</td>
+					<td> Додавання грошей<br> Зняття грошей <br> Визначення пені за використання кредитних коштів
+						<br>ToString
+					</td>
+				</tr>
+			</table>
+			<p>
+				Створити клас Bank, у якому зберігається масив клієнтів. Виконати такі операції <br>
+				• Вивести усіх простих клієнтів; <br>
+				• Вивести усіх клієнтів GoldenClient; <br>
+				• Знати сумарну кількість грошей на рахунку;<br>
+			</p>
+		</div>
+	</div>
+	<div class="container"></div>
+	<script>
+		class Client {
+			constructor({ id, fullName, accountAmount }) {
+				this.id = id;
+				this.fullName = fullName;
+				this.accountAmount = accountAmount;
+			}
+			addAccountMoney(value) {
+				if (value < 0) throw new Error("Incorrect value, can't be less than 0");
+				this.accountAmount += value;
+			}
+			reduceAccountMoney(value) {
+				if (value < 0) throw new Error("Incorrect value, can't be less than 0");
+				if (value > this.accountAmount) throw new Error("Value is more than account balance");
+				this.accountAmount -= value;
+			}
+			toString() {
+				return `Account ID: ${this.id}, name: ${this.fullName}, saldo: ${this.accountAmount} <br>`;
+			}
+		}
+		class GoldenClient extends Client {
+			constructor({ id, fullName, accountAmount, creditLimit }, creditProcent) {
+				super({ id, fullName, accountAmount });
+				this.creditLimit = creditLimit;
+				this.creditProcent = creditProcent;
+			}
+			usedCreditCosts() {
+				let usedCosts = this.accountAmount - this.creditLimit;
+				usedCosts < 0 ? usedCosts = Math.abs(usedCosts) : usedCosts = 0;
+				return usedCosts;
+			}
+			countFine() {
+				return this.usedCreditCosts() * this.creditProcent / 100;
+			}
+			toString() {
+				return `Account ID: ${this.id} - ${this.fullName} - saldo: ${this.accountAmount} /// used credit costs: ${this.usedCreditCosts()} - fine: ${this.countFine().toFixed(2)}`;
+			}
+		}
+		class Bank {
+			constructor(allClients) {
+				this.allClients = allClients;
+			}
+			getClientsList() {
+				let clients = [];
+				for (let client of this.allClients)
+					if (!(client instanceof GoldenClient) && client instanceof Client) clients.push(client);
+				return clients;
+			}
+			getGoldenClientsList() {
+				let clients = [];
+				for (let client of this.allClients)
+					if (client instanceof GoldenClient) clients.push(client);
+				return clients;
+			}
+			getTotalSumOnAccounts() {
+				let totalSum = 0;
+				for (let client of this.allClients)
+					totalSum += client.accountAmount;
+				return totalSum;
+			}
+		}
+		window.onload = () => {
+			let client1 = new Client({ id: 63242, fullName: "John Doe", accountAmount: 5000 });
+			let client2 = new Client({ id: 21341, fullName: "Tom Handrix", accountAmount: 7000 });
+			let client3 = new Client({ id: 412466, fullName: "Michael Carric", accountAmount: 2452 });
+			let client4 = new Client({ id: 11232, fullName: "Sergio Navarro", accountAmount: 3456 });
+			let goldenClient1 = new GoldenClient({ id: 1231451223, fullName: "Volodymyr Klychko", accountAmount: 23423, creditLimit: 40000 }, 7);
+			let goldenClient2 = new GoldenClient({ id: 5253239441, fullName: "Oleksandr Usyk", accountAmount: 55000, creditLimit: 50000 }, 7);
+			let goldenClient3 = new GoldenClient({ id: 823013122, fullName: "Vitaliy Klychko", accountAmount: 37593, creditLimit: 40000 }, 7);
+			let goldenClient4 = new GoldenClient({ id: 751272119, fullName: "Lennox Lewis", accountAmount: 28412, creditLimit: 50000 }, 7);
+			document.querySelector('.container').innerHTML = goldenClient3 + '<br>' + client3;
+			console.log(goldenClient4);
+			console.log(goldenClient1.countFine());
+			console.log(goldenClient2.countFine());
+			console.log(goldenClient3.countFine());
+			let bank = new Bank([
+				client1,
+				client2,
+				client3,
+				client4,
+				goldenClient1,
+				goldenClient2,
+				goldenClient3,
+				goldenClient4,
+			]);
+			console.log(bank.getClientsList());
+			console.log(bank.getGoldenClientsList());
+			console.log(bank.getTotalSumOnAccounts());
+		}
+	</script>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(249, 139, 13);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.input-last {
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top: 4px solid black;
+	}
+
+	.input {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.inp {
+		padding: 3px 5px;
+		width: 300px;
+		font-size: 17px;
+		border-radius: 10px;
+	}
+
+	.btns {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		padding: 15px 0;
+	}
+
+	button {
+		padding: 10px;
+		width: 130px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+
+	.hello {
+		cursor: pointer;
+	}
+</style>
+
+</html>
