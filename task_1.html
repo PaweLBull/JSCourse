@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 22 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача </h4>
+			<p>
+				================Date =============== <br><br>
+				Задача 1. Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго
+				вечора)<br>
+				Задача 2. Вивести дату у форматі<br>
+				“місяць – рік – вихідний/робочий”<br>
+				Задача 3. Визначити поточну пору року<br>
+				Задача 4. Вивести назву дня<br>
+				Задача 5. Користувач вводить дату народження. Визначити, скільки йому повних років.<br>
+				Задача 6. Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.<br>
+				Задача 7. Користувач бере авто на вказану кількість годин. Визначити кінцевий час повернення.<br>
+				Задача 8. Задаємо користувачу задачу з додавання двох чисел. Визначити скільки секунд було використано
+				для розв’язання задачі.<br>
+				Задача 9 . Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість днів придатності.
+				Визначити чи є він придатним на даний момент.<br>
+				Задача 10. Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування бульбашкою і
+				вставкою.
+			</p>
+		</div>
+		<div class="container">
+			<div class="task-1"></div>
+			<div class="task-2"></div>
+			<div class="task-3"></div>
+			<div class="task-4"></div>
+			<div class="task-5">
+				<label for="inp-5">Choose you birthday<input id="inp-5" type="date" value="1992-09-08"></label>
+				<div class="res-5"></div>
+			</div>
+			<div class="task-6"></div>
+			<div class="task-7"></div>
+			<div class="task-8"></div>
+			<div class="task-9">
+				<label for="inp-9">Production date<input id="inp-9-1" type="date" value=""></label>
+				<label for="inp-9">Days to expire<input id="inp-9-2" type="number" value=""></label>
+				<button class="btn">CHECK</button>
+				<div class="res-9"></div>
+			</div>
+			<ul class="task-10">
+				<li></li>
+				<li></li>
+			</ul>
+
+
+		</div>
+	</div>
+
+	<script>
+		let date = new Date();
+		console.log(date);
+		// ==================== 1 ==================================
+		function getHour(date) {
+			let res = document.querySelector('.task-1');
+			if (date.getHours() > 22 && date.getHours() < 5) res.innerHTML = 'Good night';
+			else if (date.getHours() > 17) res.innerHTML = 'Good evening';
+			else if (date.getHours() > 10) res.innerHTML = 'Good afternoon';
+			else if (date.getHours() >= 5) res.innerHTML = 'Good morning';
+		}
+		getHour(date);
+		// ==================== 2 ==================================
+		function getTypeOfDay(date) {
+			let res = document.querySelector('.task-2');
+			if (date.getDay() >= 1 && date.getDay() <= 5) res.innerHTML = `${date.getMonth() + 1} - ${date.getFullYear()} - Working day`;
+			else res.innerHTML = `${date.getMonth() + 1} - ${date.getFullYear()} - Weekend day`;
+		}
+		getTypeOfDay(date);
+		// ==================== 3 ==================================
+		function getSeason(date) {
+			let res = document.querySelector('.task-3');
+			if (date.getMonth() >= 10 && (date.getMonth() == 0))
+				res.innerHTML = 'Winter';
+			else if (date.getMonth() > 7) res.innerHTML = 'Authumn';
+			else if (date.getMonth() > 4) res.innerHTML = 'Summer';
+			else res.innerHTML = 'Spring';
+		}
+		getSeason(date);
+		// ==================== 4 ==================================
+		function dayName(date, days) {
+			let res = document.querySelector('.task-4');
+			res.innerHTML = days[date.getDay()];
+		}
+		days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		dayName(date, days);
+		// ==================== 5 ==================================
+		function getFullYears() {
+			const startCountingTime = 1970;
+			let date = new Date();
+			let res = document.querySelector('.res-5');
+			let inp = document.querySelector('#inp-5');
+			let birthday = new Date(inp.value);
+			if (birthday > date) throw new Error('Not correct data');
+			let difference = date - birthday;
+			let userAge = new Date(difference);
+			res.innerHTML = userAge.getFullYear() - startCountingTime;
+		}
+		document.querySelector('#inp-5').oninput = getFullYears;
+		// ==================== 6 ==================================
+		function getDayFromVacation(dayShift) {
+			let date = new Date();
+			let res = document.querySelector('.task-6');
+			date.setDate(date.getDate() + dayShift);
+			res.innerHTML = date.toLocaleDateString();
+		}
+		getDayFromVacation(56);
+		// ==================== 7 ==================================
+		function getShiftHour(hoursShift) {
+			let date = new Date();
+			let res = document.querySelector('.task-7');
+			date.setHours(date.getHours() + hoursShift);
+			res.innerHTML = date.toLocaleString();
+		}
+		getShiftHour(25);
+		// ==================== 8 ==================================
+		function getUserSolvingTime(minNum, maxNum) {
+			let randomNum1 = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+			let randomNum2 = minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
+			let res = document.querySelector('.task-8');
+			let start = new Date();
+			let userAnswer = parseInt(prompt(`${randomNum1} + ${randomNum2} = `));
+			let reesult = randomNum1 + randomNum2;
+			if (reesult == userAnswer) alert('Correct!');
+			else alert('Not correct!');
+			let end = new Date();
+			milisecondsCount = end - start;
+			res.innerHTML = `User time: ${milisecondsCount / 1000} sec`;
+		}
+		getUserSolvingTime(1, 9);
+		// ==================== 9 ==================================
+		function checkExpiration() {
+			let res = document.querySelector('.res-9');
+			let production = document.querySelector('#inp-9-1').value;
+			let daysToExpire = document.querySelector('#inp-9-2').value;
+			if (daysToExpire <= 0) throw new Error("Expiration days can't be zero or less");
+			let date = new Date();
+			let productionDate = new Date(production);
+			if (productionDate > date) throw new Error("Incorrect date of production");
+			productionDate.setDate(productionDate.getDate() + parseInt(daysToExpire));
+			let leftDays = Math.floor((productionDate - date) / 1000 / 60 / 60 / 24);
+			if (leftDays === 0) res.innerHTML = 'The product is still good, but today is last chance to buy it!!!';
+			else if (leftDays === 1) res.innerHTML = 'The product is good, but left 1 day to expiration!';
+			else if (leftDays > 1) res.innerHTML = 'The product is good';
+			else res.innerHTML = 'EXPIRED';
+		}
+		document.querySelector('.btn').onclick = checkExpiration;
+		// ==================== 10 ==================================
+		function getRandomNum(minNun, maxNum) {
+			return minNun + Math.floor(Math.random() * (maxNum - minNun + 1));
+		}
+		function getArrayRandomNum(minNun, maxNum, arrLength = 1000) {
+			let arr = [];
+			for (let i = 0; i < arrLength; i++)
+				arr.push(getRandomNum(minNun, maxNum));
+			return arr;
+		}
+		function bubbleSorting(arr) {
+			let res = document.querySelector('.task-10');
+			let start = new Date();
+
+			let changed;
+			do {
+				changed = false;
+				for (let i = 1; i < arr.length; i++) {
+					if (arr[i - 1] > arr[i]) {
+						let tmp = arr[i - 1];
+						arr[i - 1] = arr[i];
+						arr[i] = tmp;
+						changed = true;
+					}
+				}
+			} while (changed);
+
+			let end = new Date();
+			milisecondsCount = end - start;
+			res.firstElementChild.innerHTML = `Bubble sorting: ${milisecondsCount} ms`;
+		}
+		function insertSorting(arr) {
+			let res = document.querySelector('.task-10');
+			let start = new Date();
+
+			for (let i = 1; i < arr.length; i++) {
+				let currentElem = arr[i];
+				let j = i - 1;
+				while (j >= 0 && arr[j] > currentElem) {
+					arr[j + 1] = arr[j];
+					j = j - 1;
+				}
+				arr[j + 1] = currentElem;
+			}
+
+			let end = new Date();
+			milisecondsCount = end - start;
+			res.lastElementChild.innerHTML = `Insert sorting: ${milisecondsCount} ms`;
+		}
+
+		let array = getArrayRandomNum(1, 800);
+		let bubbleArr = [...array];
+		let insertArr = [...array];
+		bubbleSorting(bubbleArr);
+		insertSorting(insertArr);
+
+	</script>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	.container {
+		display: grid;
+		gap: 20px;
+	}
+
+	.btns {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		padding: 15px 0;
+	}
+
+	button {
+		padding: 10px;
+		width: 130px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+
+	input[type='date'],
+	input[type="number"] {
+		width: 200px;
+		margin-left: 20px;
+		padding: 5px;
+		border-radius: 5px;
+	}
+</style>
+
+</html>
