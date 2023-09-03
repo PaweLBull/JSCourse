@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 23</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="homework">
+			<h1>Homework 23</h1>
+			<div class="homework__task">
+				<a target="_blank" href="hw/task_1.html">
+					<h4>Задача</h4>
+					<p>
+						Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+						<br>
+						Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.<br>
+						Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.<br>
+						Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.<br>
+						Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.<br>
+						Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.<br>
+						Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.<br>
+						Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.<br>
+						Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm-
+						місяць, yyyy- рік).<br>
+						Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.<br>
+						Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад:
+						«4142-3433-2323-3434»). Знайти усі такі номери.<br>
+						Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)<br>
+						Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення<br>
+						Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на
+						«+38»)<br>
+						Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл. Замінити пробіл на
+						дефіс.<br>
+						Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у
+						форматі «день/місяць/рік»<br>
+						Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи
+						є це день вихідним<br>
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		/* height: 100%; */
+		margin: 0;
+		padding: 0;
+		min-width: 320px;
+		width: 100%;
+		background: radial-gradient(circle, rgba(222, 214, 7, 0.7315301120448179) 0%, rgba(0, 44, 245, 1) 100%);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 1rem;
+		padding: 0 20px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	h1 {
+		color: #f8a41c;
+		font-size: 4rem;
+		padding-top: 2rem;
+		margin: 0 auto 1.25rem;
+		text-align: center;
+	}
+
+	.homework__task {
+		/* display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 20px; */
+	}
+
+	a {
+		color: #fff531;
+		font-size: 1.4rem;
+		text-decoration: none;
+		display: block;
+		border: 2px solid orangered;
+		padding: 10px;
+		box-shadow: 2px 2px 5px 2px yellow;
+	}
+
+	a:hover h4 {
+		text-decoration: underline;
+	}
+
+	a:hover p {
+		text-shadow: 1px 1px black;
+	}
+
+	h2 {
+		text-align: center;
+		margin-bottom: 10px;
+		color: rgb(142, 30, 30);
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: #000000;
+		transition: all 0.3s;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(255, 0, 0);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(0, 0, 0);
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	th {
+		padding: 10px;
+		border: 1px solid rgb(217, 0, 255);
+		color: rgb(222, 108, 108);
+	}
+
+	.input-last,
+	.double-inp {
+		display: inline-block;
+		padding-top: 10px;
+		margin-top: 10px;
+		border-top: 4px solid black;
+	}
+
+	.double-inp {
+		display: block;
+		width: 300px;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+		border-bottom: 4px solid black;
+	}
+</style>
+
+</html>

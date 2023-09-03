@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 23 - Task 1</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача </h4>
+			<p>
+				Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+				<br>
+				Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.<br>
+				Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.<br>
+				Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.<br>
+				Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.<br>
+				Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.<br>
+				Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.<br>
+				Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.<br>
+				Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm-
+				місяць, yyyy- рік).<br>
+				Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.<br>
+				Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад:
+				«4142-3433-2323-3434»). Знайти усі такі номери.<br>
+				Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)<br>
+				Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення<br>
+				Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на
+				«+38»)<br>
+				Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл. Замінити пробіл на
+				дефіс.<br>
+				Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у
+				форматі «день/місяць/рік»<br>
+				Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи
+				є це день вихідним<br>
+			</p>
+		</div>
+		<div class="container">
+			<div class="test-0"></div>
+			<div>Задача 1: <span class="test-1"></span></div>
+			<div>Задача 2: <span class="test-2"></span></div>
+			<div>Задача 3: <span class="test-3"></span></div>
+			<div>Задача 4: <span class="test-4"></span></div>
+			<div>Задача 5: <span class="test-5"></span></div>
+			<div class="test-6-0"></div>
+			<div>Задача 6: <span class="test-6"></span></div>
+			<div>Задача 7: <span class="test-7"></span></div>
+			<div>Задача 8: <span class="test-8"></span></div>
+			<div>Задача 9: <span class="test-9"></span></div>
+			<div>Задача 10: <span class="test-10"></span></div>
+			<div class="test-11-0"></div>
+			<div>Задача 11: <span class="test-11"></span></div>
+			<div class="test-12-0"></div>
+			<div>Задача 12: <span class="test-12"></span></div>
+			<div class="test-13-0"></div>
+			<div>Задача 13: <span class="test-13"></span></div>
+			<div class="test-14-0"></div>
+			<div>Задача 14: <span class="test-14"></span></div>
+			<input class="test-15-0" type="text">
+			<div>Задача 15: <span class="test-15"></span></div>
+			<input class="test-16-0" type="text" placeholder="dd.mm.yyyy">
+			<div>Задача 16: <span class="test-16"></span></div>
+			<input class="test-17-0" type="text" placeholder="0-6 or sun,mon,tue,wed,thu,fri,sat">
+			<div>Задача 17: <span class="test-17"></span></div>
+		</div>
+	</div>
+	<script>
+		let array = ['hola', 'adios1', 'hasta222luego', 'hasta-manana', 'buenas*tardes', 'buenos73dias', 'xXx', 'Aaa', 'sqrt'];
+		document.querySelector('.test-0').innerHTML = array.join(' ');
+		// ================= 1 =====================
+		document.querySelector('.test-1').innerText = array.filter(el => /\d/gm.test(el)).join(' -- ');
+		// ================= 2 =====================
+		document.querySelector('.test-2').innerHTML = array.filter(el => !/\d/gm.test(el)).join(' -/ ');
+		// ================= 3 =====================
+		document.querySelector('.test-3').innerHTML = array.filter(el => /[aoeui]/gmi.test(el)).join(' / ');
+		// ================= 4 =====================
+		document.querySelector('.test-4').innerHTML = array.filter(el => !/[aoeui]/gmi.test(el)).join(' &#174; ');
+		// ================= 5 =====================
+		document.querySelector('.test-5').innerHTML = array.filter(el => /[13]/gmi.test(el)).join(' &#169; ');
+		// =========================================
+		let str = 'Last year LM,10 scored 100500 go/als after 2-nd World CUP 20.11.2022y';
+		document.querySelector('.test-6-0').innerHTML = str;
+		// ================= 6 =====================
+		document.querySelector('.test-6').innerHTML = str.match(/\d/gi).join(' &#8482; ');
+		// ================= 7 =====================
+		document.querySelector('.test-7').innerHTML = str.match(/[^\w\s]/g).join(' ');
+		// ================= 8 =====================
+		document.querySelector('.test-8').innerHTML = str.match(/(.(?=[^\w\s]))|((?<=[^\w\s]).)/g).join(' ');
+		// ================= 9 =====================
+		document.querySelector('.test-9').innerHTML = /\d{1,2}\.\d{1,2}\.\d{4}/gm.test(str);
+		// ================= 10 =====================
+		document.querySelector('.test-10').innerHTML = str.match(/\b\d{2}\b/g).length;
+		// ================= 11 =====================
+		let str2 = '*111-313-21-3145*, <<1231-2131-0000-3122>>, 1232-1223-9999-888, (0000-0000-0000-0000)';
+		document.querySelector('.test-11-0').innerHTML = str2;
+		document.querySelector('.test-11').innerHTML = str2.match(/\b\d{4}-\d{4}-\d{4}-\d{4}\b/gm).join(' &#8486; ');
+		// ================= 12 =====================
+		let str3 = 'https://obywatel.gov.pl';
+		document.querySelector('.test-12-0').innerHTML = str3;
+		document.querySelector('.test-12').innerHTML = /^(http|https).*\.gov\./g.test(str3);
+		// ================= 13 =====================
+		let str4 = "2030, 1990, 1993, 2000, 2014, 2024, 2066, 4320, 3020, 3000, 1233, 2120041, 19999";
+		document.querySelector('.test-13-0').innerHTML = str4;
+		let more2021 = /\d{5,}|[2-9](?=\d)\d((?<=20)[2-9]|(?<!20)\d)((?<=202)[2-9]|(?<!202)\d)/gm;
+		document.querySelector('.test-13').innerHTML = str4.match(more2021).join(' &#9728; ');
+		// ================= 14 =====================
+		let str5 = "Number:+380683862091";
+		document.querySelector('.test-14-0').innerHTML = str5;
+		document.querySelector('.test-14').innerHTML = /\+38\d{10}\b/g.test(str5);
+		// ================= 15 =====================
+		function inputName() {
+			let name = document.querySelector('.test-15-0').value;
+			document.querySelector('.test-15').innerHTML = name.replace(/ /gi, '-');
+		}
+		document.querySelector('.test-15-0').oninput = inputName;
+		// ================= 16 =====================
+		function inputDate() {
+			let date = document.querySelector('.test-16-0').value;
+			let markDate = /((?<=\d{2})(\.)(?=\d{2}\.\d{4}))|((?<=\.\d{2})(\.)(?=\d{4}($|\D)))/gm;
+			document.querySelector('.test-16').innerHTML = date.replace(markDate, '/');
+		}
+		document.querySelector('.test-16-0').oninput = inputDate;
+		// ================= 17 =====================
+		function inputDay() {
+			let date = document.querySelector('.test-17-0').value;
+			let out = document.querySelector('.test-17');
+			let weekend = /^(0|6|sun|sat)(?=\($|\W|\b)/gi;
+			let workingDay = /^([1-5]|mon|tue|wed|thu|fri)(?=\($|\W|\b)/gi;
+			if (weekend.test(date)) out.innerHTML = 'Weekend';
+			else if (workingDay.test(date)) out.innerHTML = 'Working Day';
+			else throw new Error('Not correct day');
+		}
+		document.querySelector('.test-17-0').onchange = inputDay;
+	</script>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	.container {
+		display: grid;
+		gap: 20px;
+	}
+
+	.btns {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		padding: 15px 0;
+	}
+
+	button {
+		padding: 10px;
+		width: 130px;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+
+	input {
+		display: block;
+		width: 400px;
+		padding: 10px;
+		border-radius: 5px;
+	}
+
+	span {
+		color: burlywood;
+	}
+</style>
+
+</html>
