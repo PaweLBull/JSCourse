@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 24 - Task 5</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 5</h4>
+			<p>
+				Дано масив показів температур. Підрахувати кількість входжень кожного із показів
+				let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9]
+				Заокруглити вверх значення та підрахувати кількість різних показів.
+			</p>
+		</div>
+		<div class="container">
+			<div class="t-1"></div>
+			<div class="t-2"></div>
+
+		</div>
+		<script>
+			let temperatures = [12.4, 24.9, 10.6, 12.4, 24.9, 12.4, 10.6, 11.9];
+			function countTemps(temperatures) {
+				let map = new Map();
+				temperatures.map(el => map.set(el, (map.get(el) ?? 0) + 1));
+				for (const el of map) {
+					document.querySelector('.t-1').innerHTML += `Temp  ${el[0]} deg was ${el[1]} times<br>`;
+				}
+			}
+			function differentTemps(temperatures) {
+				return new Set(temperatures.map(el => Math.ceil(el))).size;
+			}
+			countTemps(temperatures);
+			document.querySelector('.t-2').innerHTML = `Recorded ${differentTemps(temperatures)} different temps`;
+			// differentTemps(temperatures);
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(0, 60, 255);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(237, 249, 13);
+		width: 60px;
+		height: 60px;
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	h2 {
+		font-size: 30px;
+		margin-right: 50px;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 10px
+	}
+
+	.input-container {
+		display: flex;
+		gap: 20px;
+	}
+
+	input {
+		width: 200px;
+		border-radius: 5px;
+		padding: 5px;
+	}
+
+	button {
+		padding: 5px 10px;
+		font-size: 20px;
+		border-radius: 5px;
+		background-color: #fff531;
+	}
+</style>
+
+</html>

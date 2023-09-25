@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 24 - Task 7</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 7</h4>
+			<p>
+				Користувач може змінювати колір фону, що вибирає користувач з використанням <br>
+				"<"input type="color">"<br>
+					Зберігати цей колір і відновлювати при наступному відкритті. Також зберігати і відображати кількість змін
+					протягом одного сеансу.
+			</p>
+		</div>
+		<div class="container">
+			<input class="col" type="color">
+			<div class="test"></div>
+		</div>
+		<script>
+			window.onload = () => {
+				let currentColor = document.querySelector('.col');
+				let test = document.querySelector('.test');
+				currentColor.oninput = () => {
+					let changes = +(sessionStorage.getItem("changes") ?? 0) + 1;
+					localStorage.setItem("currentColor", currentColor.value);
+					sessionStorage.setItem("changes", changes);
+					test.innerHTML = sessionStorage.getItem("changes");
+					test.style.backgroundColor = localStorage.getItem("currentColor");
+				}
+				test.style.backgroundColor = localStorage.getItem("currentColor");
+			}
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(0, 60, 255);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(237, 249, 13);
+		width: 60px;
+		height: 60px;
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	h2 {
+		font-size: 30px;
+		margin-right: 50px;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 10px
+	}
+
+	.input-container {
+		display: flex;
+		gap: 20px;
+	}
+
+	input {
+		width: 200px;
+		border-radius: 5px;
+	}
+
+	.test {
+		width: 300px;
+		height: 100px;
+
+	}
+</style>
+
+</html>
