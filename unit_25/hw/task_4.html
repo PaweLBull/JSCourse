@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework 25 - Task 4</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="task">
+			<h4>Задача 4</h4>
+			<p>
+				Використовуючи один з АРІ <br>
+				https://github.com/public-apis/public-apis#animals<br>
+				та функцію fetch організувати завантаження та відображення даних
+			</p>
+		</div>
+		<div class="container">
+		</div>
+		<script>
+			fetch('https://dog.ceo/api/breeds/image/random')
+				.then((response) => response.json())
+				.then((data) => document.querySelector('.container').innerHTML = `<img src="${data.message}">`)
+				.catch(err => console.log("Smth going wrong"))
+		</script>
+	</div>
+</body>
+<style>
+	*,
+	*::before,
+	*::after {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+		color: #fff;
+		background-color: rgb(64, 64, 64);
+	}
+
+	body {
+		font-family: serif;
+		font-size: 100%;
+		line-height: 1;
+		font-size: 2rem;
+		padding: 40px;
+	}
+
+	img {
+		vertical-align: top;
+		padding-top: 10px;
+	}
+
+	.wrapper {
+		width: 100%;
+		min-height: 100%;
+		overflow: clip;
+	}
+
+	.task {
+		color: #fff531;
+		font-size: 2rem;
+		text-decoration: none;
+		display: block;
+		border-bottom: 10px solid rgb(0, 255, 229);
+		padding: 20px;
+		margin-bottom: 30px;
+	}
+
+	h4 {
+		text-align: center;
+		font-size: 36px;
+		color: greenyellow;
+		margin-bottom: 10px;
+	}
+
+	p {
+		color: yellow;
+	}
+
+	table {
+		display: inline-block;
+		border: 3px solid rgb(0, 60, 255);
+		margin-right: 40px;
+	}
+
+	td {
+		border: 2px solid rgb(237, 249, 13);
+		width: 60px;
+		height: 60px;
+		/* text-align: center; */
+		padding: 10px;
+	}
+
+	h2 {
+		font-size: 30px;
+		margin-right: 50px;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+	}
+
+	label {
+		display: flex;
+		align-items: center;
+		gap: 10px
+	}
+
+	.input-container {
+		display: flex;
+		gap: 20px;
+	}
+
+	input {
+		width: 200px;
+		border-radius: 5px;
+		padding: 5px;
+	}
+
+	button {
+		padding: 5px 10px;
+		font-size: 20px;
+		border-radius: 5px;
+		background-color: #fff531;
+	}
+</style>
+
+</html>
